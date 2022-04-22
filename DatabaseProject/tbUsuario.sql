@@ -1,0 +1,6 @@
+﻿CREATE TABLE tbUsuario (
+	UsuarioLogin	VARCHAR(64)		PRIMARY KEY,
+	Senha			VARCHAR(64)		NOT NULL,
+	Nome			VARCHAR(100)	NOT NULL,
+	Id				INT				NOT NULL			IDENTITY (1, 1)
+)
