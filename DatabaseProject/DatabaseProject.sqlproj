@@ -67,6 +67,15 @@
     <Build Include="tbLogDispositivo.sql" />
     <Build Include="tbLogErroDispositivo.sql" />
     <Build Include="tbLogWeb.sql" />
+    <Build Include="prgDispositivo.sql" />
+    <Build Include="prgBairros.sql" />
+    <Build Include="prgLogDispositivo.sql" />
+    <Build Include="prgLogErroDispositivo.sql" />
+    <Build Include="prgLogWeb.sql" />
+    <Build Include="prgMedicao.sql" />
+    <Build Include="prgMedicoesSuspeitas.sql" />
+    <Build Include="prgSubscriberAlerta.sql" />
+    <Build Include="prgUsuario.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="buildDatabase.sql" />

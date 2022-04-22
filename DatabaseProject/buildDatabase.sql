@@ -86,3 +86,41 @@ IF EXISTS(SELECT * FROM SYS.TABLES t WHERE t.Name = 'tbLogWeb')
 GO
 :r tbLogWeb.sql
 GO
+
+GO
+USE TrabalhoMultidisciplinar
+GO
+
+DECLARE @procName VARCHAR(200)
+
+DECLARE proceduresNoSistema CURSOR STATIC FORWARD_ONLY FOR
+	SELECT p.name from SYS.PROCEDURES p
+
+OPEN proceduresNoSistema
+
+FETCH NEXT FROM proceduresNoSistema
+	INTO @procName
+
+WHILE @@FETCH_STATUS = 0
+BEGIN 
+	DECLARE @sql VARCHAR(200) = CONCAT('DROP PROCEDURE ', @procName)
+	EXEC(@sql)
+
+	FETCH NEXT FROM proceduresNoSistema
+		INTO @procName
+END
+
+CLOSE proceduresNoSistema
+DEALLOCATE proceduresNoSistema
+
+GO
+
+:r prgBairros.sql
+:r prgDispositivo.sql
+:r prgLogDispositivo.sql
+:r prgLogErroDispositivo.sql
+:r prgLogWeb.sql
+:r prgMedicao.sql
+:r prgMedicoesSuspeitas.sql
+:r prgSubscriberAlerta.sql
+:r prgUsuario.sql
