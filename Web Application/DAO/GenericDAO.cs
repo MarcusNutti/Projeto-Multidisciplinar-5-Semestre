@@ -4,9 +4,9 @@ using Web_Application.Models;
 
 namespace Web_Application.DAO
 {
-    public abstract class PadraoDAO<T> where T : BaseDatabaseModel
+    public abstract class GenericDAO<T> where T : BaseDatabaseModel
     {
-        public PadraoDAO()
+        public GenericDAO()
         {
             SetTabela();
         }

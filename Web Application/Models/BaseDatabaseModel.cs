@@ -8,6 +8,6 @@ namespace Web_Application.Models
     /// </summary>
     public abstract class BaseDatabaseModel
     {
-        int Id { get; set; }
+        public int Id { get; set; }
     }
 }
