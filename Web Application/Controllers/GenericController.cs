@@ -29,7 +29,7 @@ namespace Web_Application.Controllers
             try
             {
                 ViewBag.Operacao = "I";
-                T model = default(T);
+                var model = Activator.CreateInstance(typeof(T)) as T;
                 PreencheDadosParaView("I", model);
                 return View(NomeViewForm, model);
             }

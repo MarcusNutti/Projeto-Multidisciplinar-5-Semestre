@@ -14,6 +14,8 @@ namespace Web_Application.DAO
 
         protected string Tabela { get; set; }
 
+        protected abstract void SetTabela();
+
         protected virtual SqlParameter[] CriaParametros(T model)
         {
             // Pega todas as propriedades do tipo T
@@ -39,8 +41,24 @@ namespace Web_Application.DAO
 
             return retorno.ToArray();
         }
-        protected abstract T MontaModel(DataRow registro);
-        protected abstract void SetTabela();
+        protected virtual T MontaModel(DataRow registro)
+        {
+            var propriedades = typeof(T).GetProperties();
+            var retorno = Activator.CreateInstance(typeof(T)) as T;
+
+            foreach (var prop in propriedades)
+            {
+                var atributoDaProp = prop.GetCustomAttributes(typeof(DatabasePropertyAttribute), true)
+                                     .FirstOrDefault() as DatabasePropertyAttribute;
+
+                var utilizaPropNoBanco = atributoDaProp != null ? atributoDaProp.UsedInDatabase : false;
+
+                if (utilizaPropNoBanco)
+                    prop.SetValue(retorno, registro[prop.Name]);
+            }
+
+            return retorno;
+        }
 
         public virtual void Insert(T model)
         {
