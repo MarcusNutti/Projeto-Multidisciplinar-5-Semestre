@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
+using Web_Application.Attributes;
 using Web_Application.Models;
 
 namespace Web_Application.DAO
@@ -12,7 +13,32 @@ namespace Web_Application.DAO
         }
 
         protected string Tabela { get; set; }
-        protected abstract SqlParameter[] CriaParametros(T model);
+
+        protected virtual SqlParameter[] CriaParametros(T model)
+        {
+            // Pega todas as propriedades do tipo T
+            var propriedades = typeof(T).GetProperties();
+            var retorno = new List<SqlParameter>();
+
+            foreach (var prop in propriedades)
+            {
+                // Verifica se a proprieda possui o atributo DatabaseProperty
+                var atributoDaProp = prop.GetCustomAttributes(typeof(DatabasePropertyAttribute), true)
+                                     .FirstOrDefault() as DatabasePropertyAttribute;
+
+                var utilizaPropNoBanco = atributoDaProp != null ? atributoDaProp.UsedInDatabase : false;
+
+                if (utilizaPropNoBanco)
+                {
+                    if (prop.GetValue(model) == null)
+                        retorno.Add(new SqlParameter(prop.Name, DBNull.Value));
+                    else
+                        retorno.Add(new SqlParameter(prop.Name, prop.GetValue(model)));
+                }
+            }
+
+            return retorno.ToArray();
+        }
         protected abstract T MontaModel(DataRow registro);
         protected abstract void SetTabela();
 

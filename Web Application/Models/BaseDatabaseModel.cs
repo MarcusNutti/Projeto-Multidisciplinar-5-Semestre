@@ -1,13 +1,15 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
+using Web_Application.Attributes;
 
 namespace Web_Application.Models
 {
     /// <summary>
-    /// Interface utilizada por todos os Models que são armazenados em banco de dados. 
+    /// Classe utilizada por todos os Models que são armazenados em banco de dados. 
     /// </summary>
     public abstract class BaseDatabaseModel
     {
+        [DatabaseProperty(true)]
         public int Id { get; set; }
     }
 }
