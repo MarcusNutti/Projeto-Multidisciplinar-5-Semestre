@@ -25,10 +25,7 @@ namespace Web_Application.DAO
             foreach (var prop in propriedades)
             {
                 // Verifica se a proprieda possui o atributo DatabaseProperty
-                var atributoDaProp = prop.GetCustomAttributes(typeof(DatabasePropertyAttribute), true)
-                                     .FirstOrDefault() as DatabasePropertyAttribute;
-
-                var utilizaPropNoBanco = atributoDaProp != null ? atributoDaProp.UsedInDatabase : false;
+                var utilizaPropNoBanco = prop.GetCustomAttributes(typeof(DatabasePropertyAttribute), true).Any();
 
                 if (utilizaPropNoBanco)
                 {
@@ -48,10 +45,7 @@ namespace Web_Application.DAO
 
             foreach (var prop in propriedades)
             {
-                var atributoDaProp = prop.GetCustomAttributes(typeof(DatabasePropertyAttribute), true)
-                                     .FirstOrDefault() as DatabasePropertyAttribute;
-
-                var utilizaPropNoBanco = atributoDaProp != null ? atributoDaProp.UsedInDatabase : false;
+                var utilizaPropNoBanco = prop.GetCustomAttributes(typeof(DatabasePropertyAttribute), true).Any();
 
                 if (utilizaPropNoBanco)
                     prop.SetValue(retorno, registro[prop.Name]);

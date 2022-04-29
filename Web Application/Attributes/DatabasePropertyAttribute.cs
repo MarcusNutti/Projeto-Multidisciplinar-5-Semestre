@@ -3,13 +3,11 @@
     [AttributeUsage(AttributeTargets.Property)]
     public class DatabasePropertyAttribute : Attribute
     {
-        public bool UsedInDatabase { get; private set; }
-
         /// <summary>
-        /// Cria um atributo DatabasePropertyAttribute.
+        /// Atributo utilizado para determinar se uma propriedade de uma model é utilizada
+        /// no banco de dados.
         /// </summary>
-        /// <param name="usedInDatabase">Argumento utilizado para dizer se a propriedade faz parte do banco</param>
-        public DatabasePropertyAttribute(bool usedInDatabase) => UsedInDatabase = usedInDatabase;
+        public DatabasePropertyAttribute() { }
 
     }
 }

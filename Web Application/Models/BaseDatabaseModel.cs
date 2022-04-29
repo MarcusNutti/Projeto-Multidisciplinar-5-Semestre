@@ -9,7 +9,7 @@ namespace Web_Application.Models
     /// </summary>
     public abstract class BaseDatabaseModel
     {
-        [DatabaseProperty(true)]
+        [DatabaseProperty]
         public int Id { get; set; }
     }
 }
