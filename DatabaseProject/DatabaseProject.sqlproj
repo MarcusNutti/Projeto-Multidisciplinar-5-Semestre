@@ -76,6 +76,7 @@
     <Build Include="prgMedicoesSuspeitas.sql" />
     <Build Include="prgSubscriberAlerta.sql" />
     <Build Include="prgUsuario.sql" />
+    <Build Include="prgGeral.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="buildDatabase.sql" />

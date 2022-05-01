@@ -3,11 +3,12 @@
 	@Mensagem		VARCHAR(1000),
 	@Callstack		VARCHAR(1000),
 	@TipoOperacao	INT,
-	@Detalhes		VARCHAR(1000)
+	@Detalhes		VARCHAR(1000),
+	@DataGeracao	DATETIME
 AS
 BEGIN
-	INSERT INTO tbLogWeb(Id, Mensagem, Callstack, TipoOperacao, Detalhes)
-				 VALUES (@Id, @Mensagem, @Callstack, @TipoOperacao, @Detalhes)
+	INSERT INTO tbLogWeb(Id, Mensagem, Callstack, TipoOperacao, Detalhes, DataGeracao)
+				 VALUES (@Id, @Mensagem, @Callstack, @TipoOperacao, @Detalhes, @DataGeracao)
 
 	RETURN 0
 END

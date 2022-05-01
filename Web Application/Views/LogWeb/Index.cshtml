@@ -1,0 +1,50 @@
+﻿@model IEnumerable<LogWebViewModel>
+
+<table class="table table-responsive table-sm psd-table">
+    <tr>
+        <th>
+            Ações
+        </th>
+        <th>
+            Código
+        </th>
+        <th>
+            Mensagem ( Resumo )
+        </th>
+        <th>
+            Tipo de Log
+        </th>
+        <th>
+            Data de Geração
+        </th>
+    </tr>
+    <tbody>
+        @foreach (var log in Model)
+        {
+            <tr>
+                <td>
+                    <a href="LogWeb/Details?id=@log.Id" class="btn btn-outline-info">Ver Detalhes</a>
+                </td>
+                <td>
+                    @log.Id
+                </td>
+                <td>
+                    @if (log.Mensagem.Length > 20)
+                    {
+                        @log.Mensagem.Substring(0, 20)
+                    }
+                    else
+                    {
+                        @log.Mensagem
+                    }
+                </td>
+                <td>
+                    @(((EnumTipoLog)log.TipoOperacao).ToString())
+                </td>
+                <td>
+                    @log.DataGeracao
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

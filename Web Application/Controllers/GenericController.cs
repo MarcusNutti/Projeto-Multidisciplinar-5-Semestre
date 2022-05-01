@@ -1,11 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Reflection;
 using Web_Application.DAO;
 using Web_Application.Models;
+using Web_Application.Services;
 
 namespace Web_Application.Controllers
 {
-    public class GenericController<T> : Controller where T : BaseDatabaseModel
+    public abstract class GenericController<T> : Controller where T : BaseDatabaseModel
     {
+        public GenericController()
+        {
+            SetDAO();
+        }
+
+        protected abstract void SetDAO();
+
         protected GenericDAO<T> DAO { get; set; }
         protected bool GeraProximoId { get; set; }
 
@@ -21,6 +30,10 @@ namespace Web_Application.Controllers
             }
             catch (Exception erro)
             {
+                LogService.GeraLogErro<T>(erro,
+                                          controller: GetType().Name,
+                                          action: MethodInfo.GetCurrentMethod()?.Name);
+
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
         }
@@ -35,6 +48,10 @@ namespace Web_Application.Controllers
             }
             catch (Exception erro)
             {
+                LogService.GeraLogErro<T>(erro,
+                                          controller: GetType().Name,
+                                          action: MethodInfo.GetCurrentMethod()?.Name);
+
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
         }
@@ -55,6 +72,11 @@ namespace Web_Application.Controllers
             }
             catch (Exception erro)
             {
+                LogService.GeraLogErro(erro,
+                                       id: id,
+                                       controller: GetType().Name,
+                                       action: MethodInfo.GetCurrentMethod()?.Name);
+
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
         }
@@ -67,6 +89,11 @@ namespace Web_Application.Controllers
             }
             catch (Exception erro)
             {
+                LogService.GeraLogErro(erro,
+                                       id: id,
+                                       controller: GetType().Name,
+                                       action: MethodInfo.GetCurrentMethod()?.Name);
+
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
         }
@@ -94,6 +121,11 @@ namespace Web_Application.Controllers
             }
             catch (Exception erro)
             {
+                LogService.GeraLogErro(erro,
+                                       model: model,
+                                       controller: GetType().Name,
+                                       action: MethodInfo.GetCurrentMethod()?.Name);
+
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
         }

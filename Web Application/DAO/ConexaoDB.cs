@@ -6,7 +6,7 @@ namespace Web_Application.DAO
     {
         public static SqlConnection GetDbConnection()
         {
-            string connectionString = "data source=LOCALHOST; database=aulaDB; user id=sa; password=123456";
+            string connectionString = "data source=LOCALHOST; database=TrabalhoMultidisciplinar; user id=sa; password=123456";
 
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();

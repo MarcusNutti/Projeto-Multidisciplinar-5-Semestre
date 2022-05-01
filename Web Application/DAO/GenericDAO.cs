@@ -48,7 +48,10 @@ namespace Web_Application.DAO
                 var utilizaPropNoBanco = prop.GetCustomAttributes(typeof(DatabasePropertyAttribute), true).Any();
 
                 if (utilizaPropNoBanco)
-                    prop.SetValue(retorno, registro[prop.Name]);
+                    if (registro[prop.Name] == DBNull.Value)
+                        prop.SetValue(retorno, null);
+                    else
+                        prop.SetValue(retorno, registro[prop.Name]);
             }
 
             return retorno;
@@ -95,13 +98,8 @@ namespace Web_Application.DAO
 
         public virtual List<T> List()
         {
-            var parameter = new SqlParameter[]
-            {
-                new SqlParameter("tabela", Tabela),
-            };
-
             var procedureName = ConstantesComuns.PROC_LIST + Tabela;
-            var tabela = HelperDAO.ExecutaProcSelect(procedureName, parameter);
+            var tabela = HelperDAO.ExecutaProcSelect(procedureName, null);
             List<T> lista = new List<T>();
 
             foreach (DataRow registro in tabela.Rows)
@@ -112,13 +110,13 @@ namespace Web_Application.DAO
 
         public virtual int ProximoId()
         {
-            throw new NotImplementedException();
-            //    var p = new SqlParameter[]
-            //    {
-            //        new SqlParameter("tabela", Tabela)
-            //    };
-            //    var tabela = HelperDAO.ExecutaProcSelect("spProximoId", p);
-            //    return Convert.ToInt32(tabela.Rows[0][0]);
+            var p = new SqlParameter[]
+            {
+                new SqlParameter("Tabela", "tb" + Tabela)
+            };
+
+            var tabela = HelperDAO.ExecutaProcSelect("spProximoId", p);
+            return Convert.ToInt32(tabela.Rows[0][0]);
         }
     }
 }

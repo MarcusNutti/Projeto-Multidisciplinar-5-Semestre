@@ -115,6 +115,7 @@ DEALLOCATE proceduresNoSistema
 
 GO
 
+:r prgGeral.sql
 :r prgBairros.sql
 :r prgDispositivo.sql
 :r prgLogDispositivo.sql
