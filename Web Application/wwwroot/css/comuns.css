@@ -1,3 +1,86 @@
 ﻿.psd-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 8px 8px 0 0;
+    overflow: hidden;
+}
 
+.psd-table thead tr {
+        background-color: #009879;
+        color: #ffffff;
+        text-align: left;
+        text-align: center;
+        vertical-align: middle;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+
+.psd-table th,
+.psd-table td {
+        padding: 12px 15px;
+    }
+
+.psd-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+        transition: 0.2s linear;
+    }
+
+.psd-table tbody tr:last-of-type {
+            border-bottom: 2px solid #009879;
+        }
+
+.psd-table tbody tr:hover {
+    color: #009879;
+    background-color: rgba(0,0,0,0.04);
+    transition: 0.2s linear;
+}
+
+.psd-button {
+    appearance: none;
+    background-color: transparent;
+    border: 2px solid #1A1A1A;
+    border-radius: 15px;
+    box-sizing: border-box;
+    color: #3B3B3B;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-size: 8px;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0;
+    min-height: 60px;
+    min-width: 0;
+    outline: none;
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 75%;
+    will-change: transform;
+    height: 12px
+}
+
+.psd-button:disabled {
+    pointer-events: none;
+}
+
+.psd-button:hover {
+    color: #fff;
+    background-color: #1A1A1A;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+}
+
+.psd-button:active {
+    box-shadow: none;
+    transform: translateY(0);
 }
