@@ -1,29 +1,31 @@
 ﻿@model IEnumerable<LogWebViewModel>
 
 <table class="table table-responsive table-sm psd-table">
-    <tr>
-        <th>
-            Ações
-        </th>
-        <th>
-            Código
-        </th>
-        <th>
-            Mensagem ( Resumo )
-        </th>
-        <th>
-            Tipo de Log
-        </th>
-        <th>
-            Data de Geração
-        </th>
-    </tr>
+    <thead>
+        <tr>
+            <th>
+                Ações
+            </th>
+            <th>
+                Código
+            </th>
+            <th>
+                Mensagem ( Resumo )
+            </th>
+            <th>
+                Tipo de Log
+            </th>
+            <th>
+                Data de Geração
+            </th>
+        </tr>
+    </thead>
     <tbody>
         @foreach (var log in Model)
         {
             <tr>
                 <td>
-                    <a href="LogWeb/Details?id=@log.Id" class="btn btn-outline-info">Ver Detalhes</a>
+                    <a href="LogWeb/Edit?id=@log.Id" class="btn psd-button psd-button-info">Ver Detalhes</a>
                 </td>
                 <td>
                     @log.Id
@@ -42,7 +44,7 @@
                     @(((EnumTipoLog)log.TipoOperacao).ToString())
                 </td>
                 <td>
-                    @log.DataGeracao
+                    @log.DataGeracao.ToString("dd/MM/yyyy - HH:mm:ss")
                 </td>
             </tr>
         }
