@@ -1,4 +1,10 @@
 ﻿<!DOCTYPE html>
+
+@{
+    var dadosUsuario = ViewBag.Usuario;
+    var usuarioLogado = dadosUsuario != null;
+}
+
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -15,20 +21,40 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid offset-1    ">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                    <img src="logo.png"/>
+            <div class="container-fluid offset-1">
+                <a class="navbar-brand col-3" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="logo.png" />
                     <span>Project Poseidon</span>
                 </a>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between col-6">
+                    <ul class="navbar-nav flex-grow-1 col-md-">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="LogWeb" asp-action="Index">Logs de Web</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Dispositivo" asp-action="Index">Dispositivos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Medicao" asp-action="Index">Medições</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Bairro" asp-action="Index">Bairros</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="LogWeb" asp-action="Index">Logs do Aplicativo</a>
                         </li>
                     </ul>
+                </div>
+                <div class="col-3">
+                    @if (usuarioLogado)
+                    {
+                        <img src="usuario.png" />
+                        <a href="/Usuario/LogOff">Fazer Logoff</a>
+                    }
+                    else
+                    {
+                        <a href="/Usuario/Login">Fazer LogIn</a>
+                    }
                 </div>
             </div>
         </nav>

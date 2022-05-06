@@ -11,7 +11,7 @@
     overflow: hidden;
 }
 
-.psd-table thead tr {
+    .psd-table thead tr {
         background-color: #009879;
         color: #ffffff;
         text-align: left;
@@ -21,25 +21,25 @@
         border-top-right-radius: 15px;
     }
 
-.psd-table th,
-.psd-table td {
+    .psd-table th,
+    .psd-table td {
         padding: 12px 15px;
     }
 
-.psd-table tbody tr {
+    .psd-table tbody tr {
         border-bottom: 1px solid #dddddd;
         transition: 0.2s linear;
     }
 
-.psd-table tbody tr:last-of-type {
+        .psd-table tbody tr:last-of-type {
             border-bottom: 2px solid #009879;
         }
 
-.psd-table tbody tr:hover {
-    color: #009879;
-    background-color: rgba(0,0,0,0.04);
-    transition: 0.2s linear;
-}
+        .psd-table tbody tr:hover {
+            color: #009879;
+            background-color: rgba(0,0,0,0.04);
+            transition: 0.2s linear;
+        }
 
 .psd-button {
     appearance: none;
@@ -69,21 +69,21 @@
     height: 12px
 }
 
-.psd-button:disabled {
-    pointer-events: none;
-}
+    .psd-button:disabled {
+        pointer-events: none;
+    }
 
-.psd-button:hover {
-    color: #fff;
-    background-color: #1A1A1A;
-    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-    transform: translateY(-2px);
-}
+    .psd-button:hover {
+        color: #fff;
+        background-color: #1A1A1A;
+        box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+        transform: translateY(-2px);
+    }
 
-.psd-button:active {
-    box-shadow: none;
-    transform: translateY(0);
-}
+    .psd-button:active {
+        box-shadow: none;
+        transform: translateY(0);
+    }
 
 .psd-button-info:hover {
     border-color: #0dcaf0;
@@ -98,4 +98,21 @@
 .psd-button-danger:hover {
     border-color: #eb0023;
     color: #eb0023;
+}
+
+.nav-link {
+    border-left: 1px solid rgba(0,0,0,0.1);
+    text-align: center;
+    vertical-align: central;
+    padding: 8px 24px 8px 24px;
+    transition: 0.2s linear;
+}
+
+    .nav-link:hover {
+        background-color: rgba(0, 0, 0, 0.3);
+        transition: 0.2s linear;
+    }
+
+.navbar-collapse > .navbar-nav > .nav-item:first-child > .nav-link {
+    border-left: 0;
 }
