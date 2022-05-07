@@ -61,3 +61,10 @@
 #*.PDF   diff=astextplain
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
+
+sweetalert2.js -linguist-vendored
+sweetalert2.all.js -linguist-vendored
+sweetalert2.all.min.js -linguist-vendored
+sweetalert2.min.js -linguist-vendored
+sweetalert2.css -linguist-vendored
+sweetalert2.min.css -linguist-vendored
