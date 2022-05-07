@@ -11,5 +11,9 @@
         public const string PROC_LIST   = "spList";
 
         #endregion
+
+        #region Chaves de Sessão/ Cache
+        public const string USUARIO_SESSAO = "Usuario";
+        #endregion
     }
 }

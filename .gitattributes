@@ -65,5 +65,5 @@
 *.js linguist-vendored
 *.css linguist-vendored
 
-/Web Application Project/wwwroot/css/* -linguist-vendored
-/Web Application Project/wwwroot/js/* -linguist-vendored
+/Web Application Project/wwwroot/css/* -linguist-vendored=false
+/Web Application Project/wwwroot/js/* -linguist-vendored=false

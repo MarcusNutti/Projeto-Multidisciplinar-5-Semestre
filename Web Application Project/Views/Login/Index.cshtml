@@ -1,0 +1,29 @@
+﻿@model UsuarioViewModel
+
+@{
+    Layout = "~/Views/Shared/_LibraryOnlyLayout.cshtml";
+}
+
+<form asp-action="Submit">
+    <div class="login-box">
+        <div class="container-fluid col-9 login-container">
+            <div class="row">
+                <label for="UsuarioDesencriptografado" class="control-label">Usuario:</label>
+                <input class="form-control" asp-for="UsuarioDesencriptografado" />
+                <span asp-validation-for="UsuarioDesencriptografado" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="row">
+                <label for="SenhaDesencriptografada" class="control-label">Senha:</label>
+                <input type="password" class="form-control" asp-for="SenhaDesencriptografada" />
+                <span asp-validation-for="SenhaDesencriptografada" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="row">
+                <button type="submit" class="btn psd-button psd-button-success">Logar</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />

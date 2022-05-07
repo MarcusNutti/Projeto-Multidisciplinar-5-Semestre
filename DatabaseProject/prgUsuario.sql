@@ -76,3 +76,17 @@ BEGIN
 		SELECT 0 AS RETORNO
 END
 GO
+
+CREATE PROCEDURE spVerificaUsuarioESenhaCorretos
+(
+	@UsuarioEncriptografado	VARCHAR(64),
+	@SenhaEncriptografada	VARCHAR(64)
+)
+AS
+BEGIN
+	IF EXISTS(SELECT * FROM tbUsuario WHERE UsuarioLogin = @UsuarioEncriptografado AND
+									        Senha = @SenhaEncriptografada)
+		SELECT * FROM tbUsuario WHERE UsuarioLogin = @UsuarioEncriptografado AND
+									        Senha = @SenhaEncriptografada
+END
+GO

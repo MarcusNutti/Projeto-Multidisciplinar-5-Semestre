@@ -25,7 +25,7 @@
             }
             else
             {
-                <input asp-for="UsuarioLogin" hidden/>
+                <input asp-for="UsuarioLogin" hidden />
             }
 
             @if (operacao == "I")
@@ -39,12 +39,13 @@
             }
             else
             {
-                <input asp-for="Senha" hidden/>
+                <input asp-for="Senha" hidden />
             }
-
-            <label for="TipoUsuario" class="control-label">Tipo de Usuário:</label>
-            <select asp-items="@Html.GetEnumSelectList(typeof(EnumTipoUsuario))" asp-for="TipoUsuario" class="form-select"></select>
-            <span asp-validation-for="TipoUsuario" class="text-danger"></span>
+            <div class="row">
+                <label for="TipoUsuario" class="control-label">Tipo de Usuário:</label>
+                <select asp-items="@Html.GetEnumSelectList(typeof(EnumTipoUsuario))" asp-for="TipoUsuario" class="form-select"></select>
+                <span asp-validation-for="TipoUsuario" class="text-danger"></span>
+            </div>
             <br />
         </div>
         <div class="col-5 offset-2">
@@ -57,14 +58,13 @@
             <div class="row">
                 <input type="file" value="@Model.ImagemFile" asp-for="ImagemFile" onchange="showImagePreview()" class="btn btn-secondary" />
                 <input asp-for="ImagemEmBase64" hidden />
-                <img id="imgPreview" src="data:image/jpeg;base64,@Model.ImagemEmBase64" class="img-responsive"
-                     width="100">
+                <img id="imgPreview" src="data:image/jpeg;base64,@Model.ImagemEmBase64" class="img-responsive" width="100" />
                 <span asp-validation-for="ImagemFile" class="text-danger"></span>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-5">
+    <div class="col-5">
+        <div class="row">
             <div class="col-5">
                 <button type="submit" class="btn psd-button psd-button-success">Salvar</button>
             </div>

@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using Web_Application.DAO;
+using Web_Application.Enum;
 using Web_Application.Models;
 using Web_Application.Services;
 
@@ -11,7 +12,13 @@ namespace Web_Application.Controllers
 {
     public class UsuarioController : GenericController<UsuarioViewModel>
     {
+
         protected override void SetDAO() => DAO = new UsuarioDAO();
+        protected override void SetAutenticationRequirements()
+        {
+            AutenticationRequired = false;
+            MinumumLevelRequired = EnumTipoUsuario.Padrao;
+        }
 
         public override IActionResult Index() => NotFound();
 

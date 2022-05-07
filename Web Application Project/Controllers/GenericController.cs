@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using System.Reflection;
 using Web_Application.DAO;
+using Web_Application.Enum;
 using Web_Application.Models;
 using Web_Application.Services;
 
@@ -12,12 +14,16 @@ namespace Web_Application.Controllers
         public GenericController()
         {
             SetDAO();
+            SetAutenticationRequirements();
         }
 
         protected abstract void SetDAO();
+        protected abstract void SetAutenticationRequirements();
 
         protected GenericDAO<T> DAO { get; set; }
         protected bool GeraProximoId { get; set; }
+        protected bool AutenticationRequired { get; set; } = true;
+        protected EnumTipoUsuario MinumumLevelRequired { get; set; } = EnumTipoUsuario.Administrador;
 
         protected string NomeViewIndex { get; set; } = "Index";
         protected string NomeViewCreate { get; set; } = "Form";
@@ -150,6 +156,40 @@ namespace Web_Application.Controllers
                 ModelState.AddModelError("Id", "Este registro não existe!");
             if (model.Id <= 0)
                 ModelState.AddModelError("Id", "Id inválido!");
+        }
+
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            try
+            {
+                var usuarioEmCache = SessionService.RecuperaCache<UsuarioViewModel>(context.HttpContext, ConstantesComuns.USUARIO_SESSAO);
+
+                if (usuarioEmCache != null)
+                    ViewBag.Usuario = usuarioEmCache;
+
+                if (AutenticationRequired)
+                {
+                    if (usuarioEmCache == null)
+                        context.Result = RedirectToAction("Index", "Login");
+                    else
+                    {
+                        if (usuarioEmCache.TipoUsuario >= MinumumLevelRequired)
+                            base.OnActionExecuting(context);
+                        else
+                            context.Result = View("Unauthorized");
+                    }
+                }
+                else
+                    base.OnActionExecuting(context);
+            }
+            catch (Exception erro)
+            {
+                LogService.GeraLogErro(erro,
+                                       controller: GetType().Name,
+                                       action: MethodInfo.GetCurrentMethod()?.Name);
+
+                context.Result = View("Error", new ErrorViewModel(erro.ToString()));
+            }
         }
     }
 }

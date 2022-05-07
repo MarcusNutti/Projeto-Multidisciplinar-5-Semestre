@@ -1,81 +1,67 @@
-﻿<!DOCTYPE html>
-
-@{
+﻿@{
     var dadosUsuario = ViewBag.Usuario;
     var usuarioLogado = dadosUsuario != null;
+    UsuarioViewModel dadosUsuarioLogado = ViewBag.Usuario as UsuarioViewModel;
+
+    Layout = "~/Views/Shared/_LibraryOnlyLayout.cshtml";
 }
 
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Web_Application</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Web_Application.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/lib/limonte-sweetalert2/sweetalert2.min.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/comuns.css" asp-append-version="true" />
-
-</head>
-
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid offset-1">
-                <a class="navbar-brand col-3" asp-area="" asp-controller="Home" asp-action="Index">
-                    <img src="logo.png" />
-                    <span>Project Poseidon</span>
-                </a>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between col-6">
-                    <ul class="navbar-nav flex-grow-1 col-md-">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Dispositivo" asp-action="Index">Dispositivos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Medicao" asp-action="Index">Medições</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Bairro" asp-action="Index">Bairros</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="LogWeb" asp-action="Index">Logs do Aplicativo</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-3">
-                    @if (usuarioLogado)
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container-fluid offset-1">
+            <a class="navbar-brand col-3" asp-area="" asp-controller="Home" asp-action="Index">
+                <img src="logo.png" />
+                <span>Project Poseidon</span>
+            </a>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between col-6">
+                <ul class="navbar-nav flex-grow-1 col-md-">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Dispositivo" asp-action="Index">Dispositivos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Medicao" asp-action="Index">Medições</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Bairro" asp-action="Index">Bairros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="LogWeb" asp-action="Index">Logs do Aplicativo</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-4">
+                @if (usuarioLogado)
+                {
+                    @if (dadosUsuarioLogado.Imagem == null ||
+                   dadosUsuarioLogado.Imagem.Length == 0)
                     {
-                        <img src="usuario.png" />
-                        <a href="/Usuario/LogOff">Fazer Logoff</a>
+                        <img class="img-responsive rounded-image icon" src="~/img/default-user-image.png" />
                     }
                     else
                     {
-                        <a href="/Usuario/Login">Fazer LogIn</a>
+                        <img src="data:image/jpeg;base64,@dadosUsuarioLogado.ImagemEmBase64" class="rounded-image icon" />
                     }
-                </div>
+                    <span>Olá, @dadosUsuarioLogado.Nome! <a href="/Login/Logoff">Fazer Logoff</a></span>
+                    
+                }
+                else
+                {
+                    <a href="/Login">Fazer LogIn</a>
+                }
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
         </div>
-    </footer>
-    <!--Libs-->
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/lib/limonte-sweetalert2/sweetalert2.min.js" asp-append-version="true"></script>
+    </nav>
+</header>
+<div class="container">
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+</div>
 
-    <!--Project Scripts-->
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
-</html>
+<footer class="border-top footer text-muted">
+    <div class="container">
+    </div>
+</footer>

@@ -21,6 +21,24 @@ namespace Web_Application.DAO
             return Convert.ToBoolean(retornoSp.Rows[0]["Retorno"]);
         }
 
+        public bool VerificaSeUsuarioESenhaCorrespondem(ref UsuarioViewModel model)
+        {
+            var procedureName = "spVerificaUsuarioESenhaCorretos";
+            var retornoSp = HelperDAO.ExecutaProcSelect(procedureName, new SqlParameter[]
+            {
+                new SqlParameter("@usuarioEncriptografado", model.UsuarioLogin),
+                new SqlParameter("@SenhaEncriptografada", model.Senha)
+            });
+
+            if (retornoSp == null)
+                return false;
+            else
+            {
+                model = MontaModel(retornoSp.Rows[0]);
+                return true;
+            }
+        }
+
         protected override SqlParameter[] CriaParametros(UsuarioViewModel model)
         {
             var listaParametrosOriginais = base.CriaParametros(model).ToList();
@@ -33,6 +51,10 @@ namespace Web_Application.DAO
             // Detalhes do erro: https://stackoverflow.com/questions/18170985/null-value-in-a-parameter-varbinary-datatype
             if (parametroImagem.Value == DBNull.Value)
                 parametroImagem.Value = SqlBinary.Null;
+
+            // Necessário para converter o enum em um valor válido pro BD
+            var parametroTipoUsuario = listaParametrosOriginais.Where(p => p.ParameterName == "TipoUsuario").FirstOrDefault();
+            parametroTipoUsuario.Value = (int)model.TipoUsuario;
 
             return listaParametrosOriginais.ToArray();
         }

@@ -15,3 +15,5 @@
             }
         });
 }
+
+function ReturnPage() { history.back(); }

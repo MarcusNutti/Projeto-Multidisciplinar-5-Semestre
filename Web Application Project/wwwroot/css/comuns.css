@@ -11,35 +11,35 @@
     overflow: hidden;
 }
 
-    .psd-table thead tr {
-        background-color: #009879;
-        color: #ffffff;
-        text-align: left;
-        text-align: center;
-        vertical-align: middle;
-        border-top-left-radius: 15px;
-        border-top-right-radius: 15px;
-    }
+.psd-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+    text-align: center;
+    vertical-align: middle;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
 
-    .psd-table th,
-    .psd-table td {
-        padding: 12px 15px;
-    }
+.psd-table th,
+.psd-table td {
+    padding: 12px 15px;
+}
 
-    .psd-table tbody tr {
-        border-bottom: 1px solid #dddddd;
-        transition: 0.2s linear;
-    }
+.psd-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+    transition: 0.2s linear;
+}
 
-        .psd-table tbody tr:last-of-type {
-            border-bottom: 2px solid #009879;
-        }
+.psd-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
 
-        .psd-table tbody tr:hover {
-            color: #009879;
-            background-color: rgba(0,0,0,0.04);
-            transition: 0.2s linear;
-        }
+.psd-table tbody tr:hover {
+    color: #009879;
+    background-color: rgba(0,0,0,0.04);
+    transition: 0.2s linear;
+}
 
 .psd-button {
     appearance: none;
@@ -64,26 +64,26 @@
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
-    width: 90%;
+    width: 100%;
     will-change: transform;
     height: 12px
 }
 
-    .psd-button:disabled {
-        pointer-events: none;
-    }
+.psd-button:disabled {
+    pointer-events: none;
+}
 
-    .psd-button:hover {
-        color: #fff;
-        background-color: #1A1A1A;
-        box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-        transform: translateY(-2px);
-    }
+.psd-button:hover {
+    color: #fff;
+    background-color: #1A1A1A;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+}
 
-    .psd-button:active {
-        box-shadow: none;
-        transform: translateY(0);
-    }
+.psd-button:active {
+    box-shadow: none;
+    transform: translateY(0);
+}
 
 .psd-button-info:hover {
     border-color: #0dcaf0;
@@ -108,11 +108,78 @@
     transition: 0.2s linear;
 }
 
-    .nav-link:hover {
-        background-color: rgba(0, 0, 0, 0.3);
-        transition: 0.2s linear;
-    }
+.nav-link:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+    transition: 0.2s linear;
+}
 
 .navbar-collapse > .navbar-nav > .nav-item:first-child > .nav-link {
     border-left: 0;
+}
+
+.rounded-image {
+    border-radius: 50%;
+}
+
+.icon{
+    height: 32px;
+    width: 32px
+}
+
+.psd-button-beauty {
+    padding: 0.6em 2em;
+    border: none;
+    outline: none;
+    color: rgb(255, 255, 255);
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.psd-button-beauty:before {
+    content: "";
+    background: linear-gradient( 45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000 );
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing-psd-button-beauty 20s linear infinite;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 10px;
+}
+
+@keyframes glowing-psd-button-beauty {
+    0% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 400% 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.psd-button-beauty:after {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #222;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
 }

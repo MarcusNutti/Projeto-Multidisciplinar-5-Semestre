@@ -1,5 +1,9 @@
-﻿namespace Web_Application.Enum
+﻿using System;
+using System.Text.Json.Serialization;
+
+namespace Web_Application.Enum
 {
+    [Serializable]
     public enum EnumTipoUsuario
     {
         Padrao = 0,
