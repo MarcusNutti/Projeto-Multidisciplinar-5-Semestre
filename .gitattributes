@@ -63,3 +63,8 @@
 #*.RTF   diff=astextplain
 
 /Web Application Project/wwwroot/lib/** linguist-vendored
+/Web Application Project/wwwroot/lib/bootstrap/** linguist-vendored
+/Web Application Project/wwwroot/lib/jquerry/** linguist-vendored
+/Web Application Project/wwwroot/lib/jquerry-validation/** linguist-vendored
+/Web Application Project/wwwroot/lib/jquerry-validation-unobtrusive/** linguist-vendored
+/Web Application Project/wwwroot/lib/limonte-sweetalert2/** linguist-vendored
