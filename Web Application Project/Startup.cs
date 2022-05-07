@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Web_Application_Project
+namespace Web_Application
 {
     public class Startup
     {
@@ -23,6 +23,12 @@ namespace Web_Application_Project
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddSession(options =>
+            {
+                options.Cookie.IsEssential = true; // GDPR mais detalhes em https://andrewlock.net/session-state-gdpr-and-non-essential-cookies/
+                options.IdleTimeout = TimeSpan.FromSeconds(1000000);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +45,8 @@ namespace Web_Application_Project
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseSession();
 
             app.UseAuthorization();
 

@@ -64,7 +64,7 @@
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
-    width: 75%;
+    width: 90%;
     will-change: transform;
     height: 12px
 }

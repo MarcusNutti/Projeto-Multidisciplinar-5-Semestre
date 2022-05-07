@@ -1,6 +1,12 @@
 ﻿@model LogWebViewModel
 
+@{
+    var operacao = ViewBag.Operacao as string;
+}
+
 <form asp-action="Save">
+    <input name="Operacao" value="@operacao" hidden/>
+
     <div class="row">
         <div class="col-md-5">
             <div class="row">

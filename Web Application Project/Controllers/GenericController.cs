@@ -20,7 +20,8 @@ namespace Web_Application.Controllers
         protected bool GeraProximoId { get; set; }
 
         protected string NomeViewIndex { get; set; } = "Index";
-        protected string NomeViewForm { get; set; } = "Form";
+        protected string NomeViewCreate { get; set; } = "Form";
+        protected string NomeViewEdit { get; set; } = "Form";
 
         public virtual IActionResult Index()
         {
@@ -45,7 +46,7 @@ namespace Web_Application.Controllers
                 ViewBag.Operacao = "I";
                 var model = Activator.CreateInstance(typeof(T)) as T;
                 PreencheDadosParaView("I", model);
-                return View(NomeViewForm, model);
+                return View(NomeViewCreate, model);
             }
             catch (Exception erro)
             {
@@ -56,7 +57,7 @@ namespace Web_Application.Controllers
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
         }
-        public IActionResult Edit(int id)
+        public virtual IActionResult Edit(int id)
         {
             try
             {
@@ -68,7 +69,7 @@ namespace Web_Application.Controllers
                 else
                 {
                     PreencheDadosParaView("A", model);
-                    return View(NomeViewForm, model);
+                    return View(NomeViewEdit, model);
                 }
             }
             catch (Exception erro)
@@ -98,21 +99,24 @@ namespace Web_Application.Controllers
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
         }
-        public virtual IActionResult Save(T model, string Operacao)
+        public virtual IActionResult Save(T model, string operacao)
         {
             try
             {
-                ValidaDados(model, Operacao);
+                ValidaDados(model, operacao);
                 if (ModelState.IsValid == false)
                 {
-                    ViewBag.Operacao = Operacao;
-                    PreencheDadosParaView(Operacao, model);
+                    ViewBag.Operacao = operacao;
+                    PreencheDadosParaView(operacao, model);
 
-                    return View(NomeViewForm, model);
+                    if (operacao == "I")
+                        return View(NomeViewCreate, model);
+                    else
+                        return View(NomeViewEdit, model);
                 }
                 else
                 {
-                    if (Operacao == "I")
+                    if (operacao == "I")
                         DAO.Insert(model);
                     else
                         DAO.Update(model);

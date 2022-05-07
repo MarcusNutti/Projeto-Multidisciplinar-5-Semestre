@@ -2,11 +2,13 @@
 	@UsuarioLogin	VARCHAR(64), 
 	@Senha			VARCHAR(64),
 	@Id				INT,
-	@Nome			VARCHAR(100)
+	@Nome			VARCHAR(100),
+	@Imagem			VARBINARY(MAX),
+	@TipoUsuario	INT
 AS
 BEGIN
-	INSERT INTO tbUsuario(UsuarioLogin, Senha, Nome)
-				  VALUES (@UsuarioLogin, @Senha, @Nome)
+	INSERT INTO tbUsuario(UsuarioLogin, Senha, Nome, Imagem, TipoUsuario)
+				  VALUES (@UsuarioLogin, @Senha, @Nome, @Imagem, @TipoUsuario)
 
 	RETURN 0
 END
@@ -16,13 +18,17 @@ CREATE PROCEDURE spUpdateUsuario
 	@UsuarioLogin	VARCHAR(64),
 	@Senha			VARCHAR(64),
 	@Id				INT,
-	@Nome			VARCHAR(100)
+	@Nome			VARCHAR(100),
+	@Imagem			VARBINARY(MAX),
+	@TipoUsuario	INT
 AS
 BEGIN
 	UPDATE tbUsuario
 	SET UsuarioLogin = @UsuarioLogin,
 		Senha = @Senha,
-		Nome = @Nome
+		Nome = @Nome,
+		Imagem = @Imagem,
+		TipoUsuario = @TipoUsuario
 	WHERE Id = @Id
 
 	RETURN 0
@@ -55,5 +61,18 @@ AS
 BEGIN
 	SELECT *
 	FROM tbUsuario
+END
+GO
+
+CREATE PROCEDURE spVerificaUsuarioCadastrado
+(
+	@UsuarioEncriptografado	VARCHAR(64)
+)
+AS
+BEGIN
+	IF EXISTS(SELECT * FROM tbUsuario WHERE UsuarioLogin = @UsuarioEncriptografado)
+		SELECT 1 AS RETORNO
+	ELSE
+		SELECT 0 AS RETORNO
 END
 GO

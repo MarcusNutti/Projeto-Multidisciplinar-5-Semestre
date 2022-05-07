@@ -1,0 +1,40 @@
+﻿using System;
+using System.Data.SqlClient;
+using System.Data.SqlTypes;
+using System.Linq;
+using Web_Application.Models;
+
+namespace Web_Application.DAO
+{
+    public class UsuarioDAO : GenericDAO<UsuarioViewModel>
+    {
+        protected override void SetTabela() => Tabela = "Usuario";
+
+        public bool VerificaSeUsuarioJaEstaCadastrado(string usuarioEncriptografado)
+        {
+            var procedureName = "spVerificaUsuarioCadastrado";
+            var retornoSp = HelperDAO.ExecutaProcSelect(procedureName, new SqlParameter[]
+            {
+                new SqlParameter("@usuarioEncriptografado", usuarioEncriptografado)
+            });
+
+            return Convert.ToBoolean(retornoSp.Rows[0]["Retorno"]);
+        }
+
+        protected override SqlParameter[] CriaParametros(UsuarioViewModel model)
+        {
+            var listaParametrosOriginais = base.CriaParametros(model).ToList();
+            var parametroImagem = listaParametrosOriginais.Where(p => p.ParameterName == "Imagem").FirstOrDefault();
+
+            // Isso se faz necessário graças a um erro onde não é possivel 
+            // converter NVARCHAR(MAX) para VARBINARY(MAX)
+            // TODO: Achar um jeito de consertar isso via banco, fazendo essa sobrescrita
+            // inútil.
+            // Detalhes do erro: https://stackoverflow.com/questions/18170985/null-value-in-a-parameter-varbinary-datatype
+            if (parametroImagem.Value == DBNull.Value)
+                parametroImagem.Value = SqlBinary.Null;
+
+            return listaParametrosOriginais.ToArray();
+        }
+    }
+}
