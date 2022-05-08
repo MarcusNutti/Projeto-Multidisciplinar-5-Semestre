@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE spInsertBairro
+﻿CREATE PROCEDURE spInsertBairros
 	@Id				INT, 
 	@Descricao		VARCHAR(50),
 	@CEP			VARCHAR(20),
@@ -13,7 +13,7 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE spUpdateBairro
+CREATE PROCEDURE spUpdateBairros
 	@Id				INT, 
 	@Descricao		VARCHAR(50),
 	@CEP			VARCHAR(20),
@@ -32,7 +32,7 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE spDeleteBairro
+CREATE PROCEDURE spDeleteBairros
 	@Id				INT
 AS
 BEGIN
@@ -43,7 +43,7 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE spSelectBairro
+CREATE PROCEDURE spSelectBairros
 	@Id				INT
 AS
 BEGIN
@@ -53,7 +53,7 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE spListBairro
+CREATE PROCEDURE spListBairros
 AS
 BEGIN
 	SELECT * 

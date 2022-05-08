@@ -15,10 +15,12 @@ namespace Web_Application.Controllers
         {
             SetDAO();
             SetAutenticationRequirements();
+            SetIdGenerationConfig();
         }
 
         protected abstract void SetDAO();
         protected abstract void SetAutenticationRequirements();
+        protected abstract void SetIdGenerationConfig();
 
         protected GenericDAO<T> DAO { get; set; }
         protected bool GeraProximoId { get; set; }
@@ -148,8 +150,6 @@ namespace Web_Application.Controllers
         }
         protected virtual void ValidaDados(T model, string operacao)
         {
-            ModelState.Clear();
-
             if (operacao == "I" && DAO.Consulta(model.Id) != null)
                 ModelState.AddModelError("Id", "Código já está em uso!");
             if (operacao == "A" && DAO.Consulta(model.Id) == null)

@@ -1,4 +1,4 @@
-﻿@model LogWebViewModel
+﻿@model BairroViewModel
 
 @{
     var operacao = ViewBag.Operacao as string;
@@ -25,15 +25,9 @@
             </div>
             <br />
             <div class="row">
-                <label for="DataGeracao" class="control-label">Data de Geração</label>
-                <input class="form-control disabled" type="datetime" asp-for="DataGeracao" asp-format="{0:dd/MM/yyyy - HH:mm:ss}" readonly />
-                <span asp-validation-for="DataGeracao" class="text-danger"></span>
-            </div>
-            <br />
-            <div class="row">
-                <label for="TipoOperacao" class="control-label">Tipo de Log:</label>
-                <select asp-items="@Html.GetEnumSelectList(typeof(EnumTipoLog))" asp-for="TipoOperacao" class="form-select disabled" readonly></select>
-                <span asp-validation-for="TipoOperacao" class="text-danger"></span>
+                <label for="Descricao" class="control-label">Nome do Bairro: </label>
+                <input class="form-control" asp-for="Descricao" />
+                <span asp-validation-for="Descricao" class="text-danger"></span>
             </div>
             <br />
             <div class="row">
@@ -47,14 +41,23 @@
         </div>
         <div class="col-md-5 offset-2">
             <div class="row">
-                <label for="Callstack" class="control-label">Callstack</label>
-                <textarea class="form-control disabled" asp-for="Callstack" readonly style="height: 8rem"></textarea>
+                <label for="CEP" class="control-label">CEP: </label>
+                <input class="form-control" asp-for="CEP" />
+                <span asp-validation-for="CEP" class="text-danger"></span>
             </div>
             <br />
             <div class="row">
-                <label for="Detalhes" class="control-label">Detalhes</label>
-                <textarea class="form-control disabled" asp-for="Detalhes" readonly style="height: 8rem"></textarea>
+                <label for="CEP" class="control-label">Latitude: </label>
+                <input class="form-control" asp-for="Latitude" />
+                <span asp-validation-for="Latitude" class="text-danger"></span>
             </div>
+            <br />
+            <div class="row">
+                <label for="CEP" class="control-label">Longitude: </label>
+                <input class="form-control" asp-for="Longitude" />
+                <span asp-validation-for="Longitude" class="text-danger"></span>
+            </div>
+            <br />
         </div>
     </div>
 </form>

@@ -30,7 +30,7 @@ namespace Web_Application.DAO
                 new SqlParameter("@SenhaEncriptografada", model.Senha)
             });
 
-            if (retornoSp == null)
+            if (retornoSp == null || retornoSp.Rows.Count == 0)
                 return false;
             else
             {

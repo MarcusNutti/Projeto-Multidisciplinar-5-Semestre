@@ -19,6 +19,7 @@ namespace Web_Application.Controllers
             AutenticationRequired = false;
             MinumumLevelRequired = EnumTipoUsuario.Padrao;
         }
+        protected override void SetIdGenerationConfig() => GeraProximoId = false;
 
         public override IActionResult Index() => NotFound();
 

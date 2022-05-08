@@ -1,0 +1,56 @@
+﻿@model IEnumerable<BairroViewModel>
+
+<div class="col-4">
+    <a href="Bairro/Create" class="btn psd-button psd-button-info">Criar um Bairro</a>
+</div>
+
+<table class="table table-responsive table-sm psd-table">
+    <thead>
+        <tr>
+            <th>
+                Ações
+            </th>
+            <th>
+                Código
+            </th>
+            <th>
+                Descrição
+            </th>
+            <th>
+                Latitude Central
+            </th>
+            <th>
+                Longitude Central
+            </th>
+            <th>
+                CEP
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var bairro in Model)
+        {
+            <tr>
+                <td>
+                    <a href="Bairro/Edit?id=@bairro.Id" class="btn psd-button psd-button-info col-5">Editar</a>
+                    <button class="btn psd-button psd-button-danger col-5" onclick="javascrpit:DeleteConfirmation('Bairro', @bairro.Id)">Apagar</button>
+                </td>
+                <td>
+                    @bairro.Id
+                </td>
+                <td>
+                    @bairro.Descricao
+                </td>
+                <td>
+                    @bairro.Latitude
+                </td>
+                <td>
+                    @bairro.Longitude
+                </td>
+                <td>
+                    @bairro.CEP
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
