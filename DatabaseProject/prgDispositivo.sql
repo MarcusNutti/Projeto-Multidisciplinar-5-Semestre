@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE spInsertDispositivo
+﻿CREATE PROCEDURE spInsertDispositivos
 	@Id				INT, 
 	@BairroId		INT
 AS
@@ -13,7 +13,7 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE spUpdateDispositivo
+CREATE PROCEDURE spUpdateDispositivos
 	@Id				INT, 
 	@BairroId		INT
 AS
@@ -30,7 +30,7 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE spDeleteDispositivo
+CREATE PROCEDURE spDeleteDispositivos
 	@Id				INT
 AS
 BEGIN
@@ -41,7 +41,7 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE spSelectDispositivo
+CREATE PROCEDURE spSelectDispositivos
 	@Id				INT
 AS
 BEGIN
@@ -51,10 +51,20 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE spListDispositivo
+CREATE PROCEDURE spListDispositivos
 AS
 BEGIN
 	SELECT * 
 	FROM tbDispositivos
 END
 GO
+
+CREATE FUNCTION fncSelecionaDispositivosComBairro()
+RETURNS TABLE AS
+RETURN
+(
+	SELECT d.*,
+		   b.Descricao as [NomeBairro]
+	FROM tbDispositivos d
+	INNER JOIN tbBairros b ON b.Id = d.BairroID 
+)

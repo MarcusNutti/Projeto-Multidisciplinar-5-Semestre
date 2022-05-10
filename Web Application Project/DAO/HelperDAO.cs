@@ -37,5 +37,20 @@ namespace Web_Application.DAO
                 }
             }
         }
+
+        public static DataTable ExecutaFunction(string nomeFunction)
+        {
+            using (SqlConnection conexao = ConexaoDB.GetDbConnection())
+            {
+                var sql = "select * from " + nomeFunction + "()";
+                using (SqlDataAdapter adapter = new SqlDataAdapter(sql, conexao))
+                {
+                    DataTable tabela = new DataTable();
+                    adapter.Fill(tabela);
+                    conexao.Close();
+                    return tabela;
+                }
+            }
+        }
     }
 }

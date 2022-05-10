@@ -21,7 +21,7 @@ namespace Web_Application.Controllers
         }
         protected override void SetIdGenerationConfig() => GeraProximoId = false;
 
-        public override IActionResult Index() => NotFound();
+        public override IActionResult Index() => RedirectToAction("Index", "Login");
 
         public override IActionResult Save(UsuarioViewModel model, string operacao)
         {

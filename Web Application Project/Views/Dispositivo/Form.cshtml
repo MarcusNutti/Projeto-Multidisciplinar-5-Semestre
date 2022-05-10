@@ -1,0 +1,69 @@
+﻿@model DispositivoViewModel
+
+@{
+    var operacao = ViewBag.Operacao as string;
+    var listaDeBairros = ViewBag.ListaBairros as List<BairroViewModel>;
+}
+
+<form asp-action="Save">
+    <input name="Operacao" value="@operacao" hidden/>
+
+    <div class="row">
+        <div class="col-md-5">
+            <div class="row">
+                <label for="Id" class="control-label">Id</label>
+
+                @if (ViewBag.Operacao == "A")
+                {
+                    <input class="form-control disabled" type="number" asp-for="Id" readonly />
+                }
+                else
+                {
+                    <input class="form-control" type="number" asp-for="Id" />
+                }
+
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="row">
+                <label for="Descricao" class="control-label">Nome do Dispositivo: </label>
+                <input class="form-control" asp-for="Descricao" />
+                <span asp-validation-for="Descricao" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-5">
+                    <button type="submit" class="btn psd-button psd-button-success">Salvar</button>
+                </div>
+                <div class="col-md-5">
+                    <button onclick="javascript:ReturnPage()" type="button" class="btn psd-button psd-button-danger">Sair</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5 offset-2">
+            <div class="row">
+                <label for="MedicaoReferencia" class="control-label">Medição Referência: </label>
+                <input class="form-control" asp-for="MedicaoReferencia" />
+                <span asp-validation-for="MedicaoReferencia" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="row">
+                <label for="BairroId" class="control-label">Bairro: </label>
+                <select class="form-select" asp-for="BairroId">
+                    @foreach(var bairro in listaDeBairros)
+                    {
+                        <option value="@bairro.Id">@bairro.Descricao</option>
+                    }
+                </select>
+                <span asp-validation-for="BairroId" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="row">
+                <label for="DataCriacao" class="control-label">Data de Criacao: </label>
+                <input class="form-control" asp-for="DataCriacao" />
+                <span asp-validation-for="DataCriacao" class="text-danger"></span>
+            </div>
+            <br />
+        </div>
+    </div>
+</form>
