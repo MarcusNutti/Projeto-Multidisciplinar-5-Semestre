@@ -110,6 +110,8 @@
 
 .nav-link:hover {
     background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    transform: scale(1.05) perspective(1px);
     transition: 0.2s linear;
 }
 

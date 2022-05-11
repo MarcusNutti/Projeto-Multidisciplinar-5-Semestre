@@ -1,4 +1,5 @@
 ﻿CREATE PROCEDURE spInsertMedicao
+	@Id				INT,
 	@DispositivoId	INT, 
 	@DataMedicao	DATETIME,
 	@ValorChuva		FLOAT,
@@ -13,27 +14,23 @@ END
 GO
 
 CREATE PROCEDURE spDeleteMedicao
-	@DispositivoId	INT, 
-	@DataMedicao	DATETIME
+	@Id				INT
 AS
 BEGIN
 	DELETE tbMedicao
-	WHERE DispositivoId = @DispositivoId AND
-		  DataMedicao = @DataMedicao
+	WHERE id = @Id
 
 	RETURN 0
 END
 GO
 
 CREATE PROCEDURE spSelectMedicao
-	@DispositivoId	INT, 
-	@DataMedicao	DATETIME
+	@Id				INT
 AS
 BEGIN
 	SELECT *
 	FROM tbMedicao
-	WHERE DispositivoId = @DispositivoId AND
-		  DataMedicao = @DataMedicao
+	WHERE Id = @Id
 END
 GO
 

@@ -10,6 +10,6 @@ namespace Web_Application.Models
     public abstract class BaseDatabaseModel
     {
         [DatabaseProperty]
-        public int Id { get; set; }
+        public virtual int Id { get; set; }
     }
 }

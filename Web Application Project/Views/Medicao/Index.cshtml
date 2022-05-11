@@ -1,0 +1,59 @@
+﻿@model IEnumerable<MedicaoViewModel>
+
+<table class="table table-responsive table-sm psd-table">
+    <thead>
+        <tr>
+            <th>
+                Data da Medição
+            </th>
+            <th>
+                Id do Dispositivo
+            </th>
+            <th>
+                Mensagem ( Resumo )
+            </th>
+            <th>
+                Valor da Chuva
+            </th>
+            <th>
+                Valor do Nivel
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var medicao in Model)
+        {
+            <tr>
+                <td>
+                    <a href="Medicao/Edit?id=@medicao.Id" class="btn psd-button psd-button-info">Ver Detalhes</a>
+                </td>
+                <td>
+                    @medicao.DataMedicao.ToString("dd/MM/yyyy - HH:mm:ss")
+                </td>
+                <td>
+                    @medicao.DispositivoId
+                </td>
+                <td>
+                    @if (medicao.ValorChuva == null)
+                    {
+                        <span>-</span>
+                    }
+                    else
+                    {
+                        @medicao.ValorChuva
+                    }
+                </td>
+                <td>
+                    @if (medicao.ValorNivel == null)
+                    {
+                        <span>-</span>
+                    }
+                    else
+                    {
+                        @medicao.ValorNivel
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,44 @@
+﻿@model MedicaoViewModel
+
+@{
+    var operacao = ViewBag.Operacao as string;
+}
+
+<form asp-action="Save">
+    <input name="Operacao" value="@operacao" hidden/>
+
+    <div class="row">
+        <div class="col-md-5">
+            <div class="row">
+                <label for="DispositivoId" class="control-label">Id do Dispositivo: </label>
+                <input class="form-control disabled" type="datetime" asp-for="DispositivoId" readonly />
+                <span asp-validation-for="DispositivoId" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="row">
+                <label for="DataMedicao" class="control-label">Data de Medição</label>
+                <input class="form-control disabled" type="datetime" asp-for="DataMedicao" asp-format="{0:dd/MM/yyyy - HH:mm:ss}" readonly />
+                <span asp-validation-for="DataMedicao" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-5">
+                    <button onclick="javascript:ReturnPage()" type="button" class="btn psd-button psd-button-danger">Sair</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5 offset-2">
+            <div class="row">
+                <label for="ValorChuva" class="control-label">Valor de Chuva Medido (mm):</label>
+                <input class="form-control disabled" type="datetime" asp-for="ValorChuva" readonly />
+                <span asp-validation-for="ValorChuva" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="row">
+                <label for="ValorNivel" class="control-label">Valor de Nível Medido (cm):</label>
+                <input class="form-control disabled" type="datetime" asp-for="ValorNivel" readonly />
+                <span asp-validation-for="ValorNivel" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+</form>

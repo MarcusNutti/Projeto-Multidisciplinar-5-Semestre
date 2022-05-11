@@ -1,7 +1,8 @@
 ﻿CREATE TABLE tbMedicao (
-	DispositivoId	INT,
-	DataMedicao		DATETIME,
+	Id				INT				PRIMARY KEY		IDENTITY(1, 1),
+	DispositivoId	INT				NOT NULL CONSTRAINT FK_Medicao_Dispositivos 
+												FOREIGN KEY REFERENCES tbDispositivos,
+	DataMedicao		DATETIME		NOT NULL,
 	ValorChuva		FLOAT			NULL,
 	ValorNivel		FLOAT			NULL,
-	PRIMARY KEY (DispositivoId, DataMedicao)
 )
