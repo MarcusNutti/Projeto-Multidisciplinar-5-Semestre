@@ -17,3 +17,7 @@
 }
 
 function ReturnPage() { history.back(); }
+
+$(document).ready(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})

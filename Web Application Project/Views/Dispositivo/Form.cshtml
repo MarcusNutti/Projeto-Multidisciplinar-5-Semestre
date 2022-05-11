@@ -6,7 +6,7 @@
 }
 
 <form asp-action="Save">
-    <input name="Operacao" value="@operacao" hidden/>
+    <input name="Operacao" value="@operacao" hidden />
 
     <div class="row">
         <div class="col-md-5">
@@ -42,15 +42,15 @@
         </div>
         <div class="col-md-5 offset-2">
             <div class="row">
-                <label for="MedicaoReferencia" class="control-label">Medição Referência: </label>
-                <input class="form-control" asp-for="MedicaoReferencia" />
+                <label for="MedicaoReferencia" class="control-label">Medição Referência (mm): </label>
+                <input class="form-control" asp-for="MedicaoReferencia" data-toggle="tooltip" data-placement="top" title="Distância padrão entre dispositivo e corpo d'agua em milímetros"/>
                 <span asp-validation-for="MedicaoReferencia" class="text-danger"></span>
             </div>
             <br />
             <div class="row">
                 <label for="BairroId" class="control-label">Bairro: </label>
                 <select class="form-select" asp-for="BairroId">
-                    @foreach(var bairro in listaDeBairros)
+                    @foreach (var bairro in listaDeBairros)
                     {
                         <option value="@bairro.Id">@bairro.Descricao</option>
                     }
@@ -58,12 +58,15 @@
                 <span asp-validation-for="BairroId" class="text-danger"></span>
             </div>
             <br />
-            <div class="row">
-                <label for="DataCriacao" class="control-label">Data de Criacao: </label>
-                <input class="form-control" asp-for="DataCriacao" />
-                <span asp-validation-for="DataCriacao" class="text-danger"></span>
-            </div>
-            <br />
+            @if (operacao == "A")
+            {
+                <div class="row">
+                    <label for="DataCriacao" class="control-label">Data da Última Alteração: </label>
+                    <input class="form-control disabled" asp-for="DataAtualizacao" readonly/>
+                    <span asp-validation-for="DataAtualizacao" class="text-danger"></span>
+                </div>
+                <br />
+            }
         </div>
     </div>
 </form>

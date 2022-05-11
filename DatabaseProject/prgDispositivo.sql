@@ -1,21 +1,27 @@
 ﻿CREATE PROCEDURE spInsertDispositivos
-	@Id				INT, 
-	@BairroId		INT
+	@Id					INT,
+	@Descricao			VARCHAR(100),
+	@BairroId			INT,
+	@DataAtualizacao	DATETIME,
+	@MedicaoReferencia	FLOAT
 AS
 BEGIN
 	IF NOT EXISTS (SELECT * FROM tbBairros WHERE Id = @BairroId)
 		RAISERROR ( 'O bairro informado não existe.', 16, 1)
 
-	INSERT INTO tbDispositivos (Id, BairroID, DataCriacao)
-						VALUES (@Id, @BairroId, GETDATE())
+	INSERT INTO tbDispositivos (Id, Descricao, BairroID, DataAtualizacao, MedicaoReferencia)
+						VALUES (@Id, @Descricao, @BairroId, @DataAtualizacao, @MedicaoReferencia)
 
 	RETURN 0
 END
 GO
 
 CREATE PROCEDURE spUpdateDispositivos
-	@Id				INT, 
-	@BairroId		INT
+	@Id					INT,
+	@Descricao			VARCHAR(100),
+	@BairroId			INT,
+	@DataAtualizacao	DATETIME,
+	@MedicaoReferencia	FLOAT
 AS
 BEGIN
 	IF NOT EXISTS (SELECT * FROM tbBairros WHERE Id = @BairroId)
@@ -23,7 +29,9 @@ BEGIN
 
 	UPDATE tbDispositivos
 	SET BairroID = @BairroId,
-		DataCriacao = GETDATE()
+		Descricao = @Descricao,
+		DataAtualizacao = @DataAtualizacao,
+		MedicaoReferencia = @MedicaoReferencia
 	WHERE Id = @Id
 
 	RETURN 0
@@ -68,3 +76,4 @@ RETURN
 	FROM tbDispositivos d
 	INNER JOIN tbBairros b ON b.Id = d.BairroID 
 )
+GO

@@ -4,6 +4,6 @@
 	BairroID			INT
 						CONSTRAINT FK_Bairro_Dispositivo 
 							FOREIGN KEY REFERENCES tbBairros NOT NULL,
-	DataCriacao			DATETIME		NOT NULL,
+	DataAtualizacao		DATETIME		NOT NULL,
 	MedicaoReferencia	FLOAT			NOT NULL
 )

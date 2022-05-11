@@ -15,7 +15,7 @@ namespace Web_Application.Models
         public int BairroId { get; set; }
 
         [DatabaseProperty]
-        public DateTime DataCriacao { get; set; }
+        public DateTime DataAtualizacao { get; set; }
 
         [DatabaseProperty]
         [Required(ErrorMessage = "É necessário preencher a medição de referência")]

@@ -27,6 +27,13 @@ namespace Web_Application.Controllers
             }
         }
 
+        public override IActionResult Save(DispositivoViewModel model, string operacao)
+        {
+            model.DataAtualizacao = DateTime.Now;
+
+            return base.Save(model, operacao);
+        }
+
         protected override void SetAutenticationRequirements()
         {
             AutenticationRequired = true;
@@ -43,6 +50,19 @@ namespace Web_Application.Controllers
             ViewBag.ListaBairros = daoBairro.List();
 
             base.PreencheDadosParaView(Operacao, model);
+        }
+
+        protected override void ValidaDados(DispositivoViewModel model, string operacao)
+        {
+            var bairroDAO = new BairroDAO();
+
+            if (bairroDAO.Consulta(model.BairroId) == null)
+                ModelState.AddModelError("BairroId", "O bairro informado não existe");
+
+            if (model.DataAtualizacao > DateTime.Now)
+                ModelState.AddModelError("DataCriacao", "A data de criação deve ser menor que o horário atual");
+
+            base.ValidaDados(model, operacao);
         }
     }
 }
