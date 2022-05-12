@@ -11,8 +11,8 @@ namespace Web_Application.DAO
 
         public virtual List<DispositivoViewModel> ListComBairro()
         {
-            var procedureName = "fncSelecionaDispositivosComBairro";
-            var tabela = HelperDAO.ExecutaFunction(procedureName);
+            var procedureName = "spSelecionaDispositivosComBairro";
+            var tabela = HelperDAO.ExecutaProcSelect(procedureName, null);
             List<DispositivoViewModel> lista = new List<DispositivoViewModel>();
 
             foreach (DataRow registro in tabela.Rows)

@@ -77,3 +77,10 @@ RETURN
 	INNER JOIN tbBairros b ON b.Id = d.BairroID 
 )
 GO
+
+CREATE PROCEDURE spSelecionaDispositivosComBairro
+AS
+BEGIN
+	SELECT * FROM fncSelecionaDispositivosComBairro()
+END
+GO
