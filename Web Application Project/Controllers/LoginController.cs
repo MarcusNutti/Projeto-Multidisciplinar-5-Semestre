@@ -71,14 +71,23 @@ namespace Web_Application.Controllers
             ModelState.Clear();
             var usuarioDAO = new UsuarioDAO();
 
-            if (!usuarioDAO.VerificaSeUsuarioJaEstaCadastrado(model.UsuarioLogin))
+            if (model.UsuarioDesencriptografado == null)
+            {
+                ModelState.AddModelError("UsuarioDesencriptografado", "Usuário deve ser preenchido");
+            }
+            else if (!usuarioDAO.VerificaSeUsuarioJaEstaCadastrado(model.UsuarioLogin))
             {
                 ModelState.AddModelError("UsuarioDesencriptografado", "Usuário não existe");
-                return;
             }
 
-            if (!usuarioDAO.VerificaSeUsuarioESenhaCorrespondem(ref model))
+            if (model.SenhaDesencriptografada == null)
+            {
+                ModelState.AddModelError("SenhaDesencriptografada", "Senha deve ser preenchida");
+            }
+            else if (!usuarioDAO.VerificaSeUsuarioESenhaCorrespondem(ref model))
+            {
                 ModelState.AddModelError("SenhaDesencriptografada", "Senha não corresponde ao usuário");
+            }
         }
     }
 }

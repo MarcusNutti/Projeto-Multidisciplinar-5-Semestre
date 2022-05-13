@@ -1,0 +1,52 @@
+﻿@model IEnumerable<DispositivoViewModel>
+
+<table class="table table-responsive table-sm psd-table">
+    <thead>
+        <tr>
+            <th>
+                Ações
+            </th>
+            <th>
+                Código
+            </th>
+            <th>
+                Descrição
+            </th>
+            <th>
+                Bairro
+            </th>
+            <th>
+                Medição de Referência
+            </th>
+            <th>
+                Data Alteração
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var dispositivo in Model)
+        {
+            <tr>
+                <td>
+                    <a href="Dispositivo/Edit?id=@dispositivo.Id" class="btn psd-button psd-button-info col-5">Editar</a>
+                    <button class="btn psd-button psd-button-danger col-5" onclick="javascrpit:DeleteConfirmation('Dispositivo', @dispositivo.Id)">Apagar</button>
+                </td>
+                <td>
+                    @dispositivo.Id
+                </td>
+                <td>
+                    @dispositivo.Descricao
+                </td>
+                <td>
+                    @dispositivo.NomeBairro
+                </td>
+                <td>
+                    @dispositivo.MedicaoReferencia
+                </td>
+                <td>
+                    @dispositivo.DataAtualizacao.ToString("dd/MM/yyyy - HH:mm:ss")
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

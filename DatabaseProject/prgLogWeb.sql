@@ -42,5 +42,6 @@ AS
 BEGIN
 	SELECT * 
 	FROM tbLogWeb
+	ORDER BY DataGeracao DESC
 END
 GO

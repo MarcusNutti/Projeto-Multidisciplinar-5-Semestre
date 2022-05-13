@@ -60,3 +60,19 @@ BEGIN
 	FROM tbBairros
 END
 GO
+
+CREATE PROCEDURE spSearchBairros
+(
+	@Id				VARCHAR(MAX), 
+	@Descricao		VARCHAR(50),
+	@CEP			VARCHAR(20)
+)
+AS
+BEGIN
+	SELECT *
+	FROM tbBairros
+	WHERE Id LIKE CONCAT('%', ISNULL(@Id, ''), '%') AND
+		  Descricao LIKE CONCAT('%', ISNULL(@Descricao, ''), '%') AND
+		  CEP LIKE CONCAT('%', ISNULL(@CEP, ''), '%') 
+END
+GO
