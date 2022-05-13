@@ -1,9 +1,0 @@
-﻿CREATE PROCEDURE spProximoId
-(
-	@Tabela VARCHAR(MAX)
-)
-AS
-BEGIN
-	EXEC('SELECT ISNULL(MAX(ID) + 1, 1) AS MAIOR FROM ' + @Tabela)
-END
-GO
