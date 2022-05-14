@@ -63,5 +63,6 @@ BEGIN
 	WHERE DispositivoId LIKE CONCAT('%', ISNULL(@DispositivoId, ''), '%') AND
 		  DataMedicao > CAST(ISNULL(@DataInicial, '1800-01-1') AS DATETIME) AND
 		  DataMedicao < CAST(ISNULL(@DataFinal, '9999-12-31') AS DATETIME)
+	ORDER BY DataMedicao DESC
 END
 GO

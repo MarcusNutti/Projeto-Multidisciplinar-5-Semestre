@@ -1,52 +1,48 @@
 ﻿@model IEnumerable<LogWebViewModel>
 
-<table class="table table-responsive table-sm psd-table">
-    <thead>
-        <tr>
-            <th>
-                Ações
-            </th>
-            <th>
-                Código
-            </th>
-            <th>
-                Mensagem ( Resumo )
-            </th>
-            <th>
-                Tipo de Log
-            </th>
-            <th>
-                Data de Geração
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var log in Model)
-        {
-            <tr>
-                <td>
-                    <a href="LogWeb/Edit?id=@log.Id" class="btn psd-button psd-button-info">Ver Detalhes</a>
-                </td>
-                <td>
-                    @log.Id
-                </td>
-                <td>
-                    @if (log.Mensagem.Length > 20)
-                    {
-                        @log.Mensagem.Substring(0, 20)
-                    }
-                    else
-                    {
-                        @log.Mensagem
-                    }
-                </td>
-                <td>
-                    @(((EnumTipoLog)log.TipoOperacao).ToString())
-                </td>
-                <td>
-                    @log.DataGeracao.ToString("dd/MM/yyyy - HH:mm:ss")
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+@{
+    var tiposDeLog = Html.GetEnumSelectList(typeof(EnumTipoLog)).ToList();
+    tiposDeLog.Add(new SelectListItem
+            {
+                Text = "Selecione...",
+                Value = "-1",
+                Selected = true
+            });
+}
+
+<div class="search-bar">
+    <div class="row d-flex align-items-center">
+        <div class="col-md-1 offset-1">
+            <label class="control-label" style="color:white">Tipo de Log: </label>
+        </div>
+        <div class="col-md-2">
+            <select id="searchType" class="form-select" asp-items="tiposDeLog"></select>
+        </div>
+        <div class="col-md-1">
+            <label class="control-label" style="color:white">Data Inicio: </label>
+        </div>
+        <div class="col-md-2">
+            <input class="form-control" id="searchDataInicial" type="date"/>
+        </div>
+        <div class="col-md-1">
+            <label class="control-label" style="color:white">Data Fim: </label>
+        </div>
+        <div class="col-md-2">
+            <input class="form-control" id="searchDataFinal" type="date"/>
+        </div>
+        <div class="col-2">
+            <button class="btn btn-info" onclick="javascprit:searchLog()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                </svg>
+                Buscar
+            </button>
+        </div>
+    </div>
+</div>
+
+<div id="dados">
+    @await Html.PartialAsync("pvGrid", Model)
+</div>
+
+<script src="~/js/logIndex.js"></script>
