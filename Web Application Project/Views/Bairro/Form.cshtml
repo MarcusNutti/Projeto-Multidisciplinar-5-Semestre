@@ -42,22 +42,26 @@
         <div class="col-md-5 offset-2">
             <div class="row">
                 <label for="CEP" class="control-label">CEP: </label>
-                <input class="form-control" asp-for="CEP" />
+                <input class="form-control" asp-for="CEP" style="width: 75%"/>
+                <button type="button" class="btn btn-info col-2 offset-1" onclick="javascript:getLatitudeLongitude()">Calcular</button>
+                <span id="msgErroLatLong" class="text-danger" hidden>Ocorreu um erro ao requisitar a latitude e longitude!</span>
                 <span asp-validation-for="CEP" class="text-danger"></span>
             </div>
             <br />
             <div class="row">
                 <label for="CEP" class="control-label">Latitude: </label>
-                <input class="form-control" asp-for="Latitude" />
+                <input class="form-control disabled" asp-for="Latitude" readonly/>
                 <span asp-validation-for="Latitude" class="text-danger"></span>
             </div>
             <br />
             <div class="row">
                 <label for="CEP" class="control-label">Longitude: </label>
-                <input class="form-control" asp-for="Longitude" />
+                <input class="form-control disabled" asp-for="Longitude" readonly/>
                 <span asp-validation-for="Longitude" class="text-danger"></span>
             </div>
             <br />
         </div>
     </div>
 </form>
+
+<script src="~/js/editBairro.js"></script>
