@@ -28,5 +28,53 @@ namespace Web_Application.DAO
 
             return lista;
         }
+    
+        public List<MedicaoHoraViewModel> GetMedicoesUltimoDiaPorDispositivo(int dispositivoId)
+        {
+            var procedureName = "spSelecionaMedicaoUltimoDiaPorDispositivo";
+
+            var tabela = HelperDAO.ExecutaProcSelect(procedureName, new SqlParameter[]
+            {
+                new SqlParameter("dispositivoId", dispositivoId),
+            });
+
+            return RecuperaListaDeMedicoes(tabela);
+        }
+        public List<MedicaoHoraViewModel> GetMedicoesUltimoMesPorDispositivo(int dispositivoId)
+        {
+            var procedureName = "spSelecionaMedicaoUltimoMesPorDispositivo";
+
+            var tabela = HelperDAO.ExecutaProcSelect(procedureName, new SqlParameter[]
+            {
+                new SqlParameter("dispositivoId", dispositivoId),
+            });
+
+            return RecuperaListaDeMedicoes(tabela);
+        }
+        
+        private List<MedicaoHoraViewModel> RecuperaListaDeMedicoes(DataTable tabela)
+        {
+            var lista = new List<MedicaoHoraViewModel>();
+
+            foreach (DataRow registro in tabela.Rows)
+            {
+                var medicaoHoraAtual = new MedicaoHoraViewModel();
+                medicaoHoraAtual.Hora = Convert.ToInt32(registro["ParteDataMedicao"]);
+
+                if (registro["MediaChuva"] != DBNull.Value)
+                    medicaoHoraAtual.ValorChuva = Convert.ToDouble(registro["MediaChuva"]);
+                else
+                    medicaoHoraAtual.ValorChuva = null;
+
+                if (registro["MediaNivel"] != DBNull.Value)
+                    medicaoHoraAtual.ValorNivel = Convert.ToDouble(registro["MediaNivel"]);
+                else
+                    medicaoHoraAtual.ValorNivel = null;
+
+                lista.Add(medicaoHoraAtual);
+            }
+
+            return lista;
+        }
     }
 }

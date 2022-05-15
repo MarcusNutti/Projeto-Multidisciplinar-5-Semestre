@@ -66,3 +66,62 @@ BEGIN
 	ORDER BY DataMedicao DESC
 END
 GO
+
+----------------------------------------// Dashboard //----------------------------------------
+
+-- Dispositivos
+CREATE FUNCTION fncSelecionaMedicaoUltimoDiaPorDispositivo
+(
+	@DispositivoId	INT
+)
+RETURNS TABLE AS
+RETURN
+(
+	SELECT DATEPART(HOUR, dataMedicao) [ParteDataMedicao],
+		   AVG(ValorChuva)			   [MediaChuva],
+		   AVG(ValorNivel)			   [MediaNivel]
+	FROM tbMedicao
+	WHERE DispositivoId = @DispositivoId AND
+		  DataMedicao >= DATEADD(HOUR, -24, GETDATE())
+	GROUP BY DATEPART(HOUR, DataMedicao)
+)
+GO
+
+CREATE PROCEDURE spSelecionaMedicaoUltimoDiaPorDispositivo
+(
+	@DispositivoId	INT
+)
+AS
+BEGIN
+	SELECT *
+	FROM fncSelecionaMedicaoUltimoDiaPorDispositivo(@DispositivoId)
+END
+GO
+
+CREATE FUNCTION fncSelecionaMedicaoUltimoMesPorDispositivo
+(
+	@DispositivoId	INT
+)
+RETURNS TABLE AS
+RETURN
+(
+	SELECT DATEPART(DAY, dataMedicao)  [ParteDataMedicao],
+		   AVG(ValorChuva)			   [MediaChuva],
+		   AVG(ValorNivel)			   [MediaNivel]
+	FROM tbMedicao
+	WHERE DispositivoId = @DispositivoId AND
+		  DataMedicao >= DATEADD(MONTH, -1, GETDATE())
+	GROUP BY DATEPART(DAY, DataMedicao)
+)
+GO
+
+CREATE PROCEDURE spSelecionaMedicaoUltimoMesPorDispositivo
+(
+	@DispositivoId	INT
+)
+AS
+BEGIN
+	SELECT *
+	FROM fncSelecionaMedicaoUltimoMesPorDispositivo(@DispositivoId)
+END
+GO
