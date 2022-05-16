@@ -28,7 +28,7 @@ function AtualizaGraficoNivelHoraAHoraDispositivo() {
             }
 
             var chart = new CanvasJS.Chart("hourlyWaterLevelDeviceChart", {
-                backgroundColor: "#cdd1d0",
+                backgroundColor: "#f0f0f0",
                 theme: "light2",
                 animationEnabled: false,
                 zoomEnabled: false,
@@ -80,7 +80,7 @@ function AtualizaGraficoNivelDiaADiaDispositivo() {
             }
 
             var chart = new CanvasJS.Chart("dailyWaterLevelDeviceChart", {
-                backgroundColor: "#cdd1d0",
+                backgroundColor: "#f0f0f0",
                 theme: "light2",
                 animationEnabled: false,
                 zoomEnabled: false,
@@ -131,7 +131,7 @@ function AtualizaGraficoValorDeChuvaHoraAHoraDispositivo() {
             }
 
             var chart = new CanvasJS.Chart("hourlyRainValueDeviceChart", {
-                backgroundColor: "#cdd1d0",
+                backgroundColor: "#f0f0f0",
                 theme: "light2",
                 animationEnabled: false,
                 zoomEnabled: false,
@@ -183,7 +183,7 @@ function AtualizaGraficoValorDeChuvaDiaADiaDispositivo() {
             }
 
             var chart = new CanvasJS.Chart("dailyRainValueDeviceChart", {
-                backgroundColor: "#cdd1d0",
+                backgroundColor: "#f0f0f0",
                 theme: "light2",
                 animationEnabled: false,
                 zoomEnabled: false,
