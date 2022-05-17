@@ -1,5 +1,5 @@
 ﻿function getLatitudeLongitude() {
-    var cep = $('#CEP').val();
+    var cep = $('#CEP').val().replace("-", "");
 
     $.ajax({
         url: "/api/GetLatLong",
