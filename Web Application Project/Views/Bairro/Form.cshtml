@@ -43,7 +43,7 @@
             <div class="row">
                 <label for="CEP" class="control-label">CEP: </label>
                 <input class="form-control" asp-for="CEP" style="width: 75%"/>
-                <button type="button" class="btn btn-info col-2 offset-1" onclick="javascript:getLatitudeLongitude()">Calcular</button>
+                <button type="button" style="margin-left:8%" class="psd-button--pandora col-2 offset-1" onclick="javascript:getLatitudeLongitude()">Calcular</button>
                 <span id="msgErroLatLong" class="text-danger" hidden>Ocorreu um erro ao requisitar a latitude e longitude!</span>
                 <span asp-validation-for="CEP" class="text-danger"></span>
             </div>

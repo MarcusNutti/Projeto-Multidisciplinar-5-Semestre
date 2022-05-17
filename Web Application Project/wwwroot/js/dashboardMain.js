@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
     setInterval(function () {
         AtualizaGraficos()
-    }, 1000)
+    }, 10000)
 })
 
 function AtualizaGraficos() {
@@ -10,7 +10,6 @@ function AtualizaGraficos() {
     AtualizaGraficoValorDeChuvaHoraAHoraDispositivo();
     AtualizaGraficoValorDeChuvaDiaADiaDispositivo();
 }
-
 function AtualizaGraficoNivelHoraAHoraDispositivo() {
     var dispositivoSelecionado = $('#dispositivoReferencia').val();
 
@@ -20,6 +19,7 @@ function AtualizaGraficoNivelHoraAHoraDispositivo() {
         success: function (dados) {
 
             var dataPoints = [];
+            
 
             var result = dados;
 
@@ -28,8 +28,8 @@ function AtualizaGraficoNivelHoraAHoraDispositivo() {
             }
 
             var chart = new CanvasJS.Chart("hourlyWaterLevelDeviceChart", {
-                backgroundColor: "#f0f0f0",
-                theme: "light2",
+                backgroundColor: "#ffffff",
+                theme:"light2",
                 animationEnabled: false,
                 zoomEnabled: false,
 
@@ -44,16 +44,19 @@ function AtualizaGraficoNivelHoraAHoraDispositivo() {
                 axisY: {
                     title: "Valor de Nível",
                     suffix: "mm",
+                    
+                    
                 },
                 axisX: {
                     title: "Horário",
                     suffix: "h",
+                    
                 },
                 data: [
                     {
                         type: "splineArea",
                         markerSize: 7,
-                        color: "#009879",
+                        color: "#2196f3",
                         dataPoints: dataPoints,
                     }
                 ]
@@ -80,7 +83,7 @@ function AtualizaGraficoNivelDiaADiaDispositivo() {
             }
 
             var chart = new CanvasJS.Chart("dailyWaterLevelDeviceChart", {
-                backgroundColor: "#f0f0f0",
+                backgroundColor: "#ffffff",
                 theme: "light2",
                 animationEnabled: false,
                 zoomEnabled: false,
@@ -104,7 +107,7 @@ function AtualizaGraficoNivelDiaADiaDispositivo() {
                     {
                         type: "splineArea",
                         markerSize: 7,
-                        color: "#009879",
+                        color: "#1976d2",
                         dataPoints: dataPoints,
                     }
                 ]
@@ -131,7 +134,7 @@ function AtualizaGraficoValorDeChuvaHoraAHoraDispositivo() {
             }
 
             var chart = new CanvasJS.Chart("hourlyRainValueDeviceChart", {
-                backgroundColor: "#f0f0f0",
+                backgroundColor: "#ffffff",
                 theme: "light2",
                 animationEnabled: false,
                 zoomEnabled: false,
@@ -156,7 +159,7 @@ function AtualizaGraficoValorDeChuvaHoraAHoraDispositivo() {
                     {
                         type: "splineArea",
                         markerSize: 7,
-                        color: "#009879",
+                        color: "#2196f3",
                         dataPoints: dataPoints,
                     }
                 ]
@@ -183,7 +186,7 @@ function AtualizaGraficoValorDeChuvaDiaADiaDispositivo() {
             }
 
             var chart = new CanvasJS.Chart("dailyRainValueDeviceChart", {
-                backgroundColor: "#f0f0f0",
+                backgroundColor: "#ffffff",
                 theme: "light2",
                 animationEnabled: false,
                 zoomEnabled: false,
@@ -207,7 +210,7 @@ function AtualizaGraficoValorDeChuvaDiaADiaDispositivo() {
                     {
                         type: "splineArea",
                         markerSize: 7,
-                        color: "#009879",
+                        color: "#1976d2",
                         dataPoints: dataPoints,
                     }
                 ]
