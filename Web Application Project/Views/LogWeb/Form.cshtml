@@ -14,11 +14,11 @@
 
                 @if (ViewBag.Operacao == "A")
                 {
-                    <input class="form-control disabled" type="number" asp-for="Id" readonly />
+                    <input class="psd-input disabled" type="number" asp-for="Id" readonly />
                 }
                 else
                 {
-                    <input class="form-control" type="number" asp-for="Id" />
+                    <input class="psd-input" type="number" asp-for="Id" />
                 }
 
                 <span asp-validation-for="Id" class="text-danger"></span>
@@ -32,7 +32,7 @@
             <br />
             <div class="row">
                 <label for="TipoOperacao" class="control-label">Tipo de Log:</label>
-                <select asp-items="@Html.GetEnumSelectList(typeof(EnumTipoLog))" asp-for="TipoOperacao" class="form-select" disabled></select>
+                <select asp-items="@Html.GetEnumSelectList(typeof(EnumTipoLog))" asp-for="TipoOperacao" disabled></select>
                 <span asp-validation-for="TipoOperacao" class="text-danger"></span>
             </div>
             <br />
