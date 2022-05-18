@@ -432,3 +432,284 @@ option {
         outline: 0;
         border: 3px solid rgb(0, 152, 121);
     }
+
+.psd-unauthorized {
+    align-items: center;
+    background: linear-gradient(#003eff, #0028a9);
+    color: white;
+    display: flex;
+    font: 2rem "Poiret One";
+    height: 100vh;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.psd-erro {
+
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #333333;
+}
+
+.psd-a {
+    color: white;
+    display: inline;
+}
+.psd-glitch {
+    text-align: center;
+    font-weight:bolder;
+    font-family:Helvetica, sans-serif;
+    color: red;
+    font-size: 3em;
+    letter-spacing: 6px;
+    font-weight: 400;
+    margin: 0;
+    line-height: 0;
+    animation: glitch1 2.5s infinite;
+}
+
+.psd-glitch:nth-child(2) {
+    color: #67f3da;
+    animation: glitch2 2.5s infinite;
+}
+
+.psd-glitch:nth-child(3) {
+    color: #f16f6f;
+    animation: glitch3 2.5s infinite;
+}
+/*Keyframes*/
+
+@keyframes glitch1 {
+    0% {
+        transform: none;
+        opacity: 1;
+    }
+
+    7% {
+        transform: skew(-0.5deg, -0.9deg);
+        opacity: 0.75;
+    }
+
+    10% {
+        transform: none;
+        opacity: 1;
+    }
+
+    27% {
+        transform: none;
+        opacity: 1;
+    }
+
+    30% {
+        transform: skew(0.8deg, -0.1deg);
+        opacity: 0.75;
+    }
+
+    35% {
+        transform: none;
+        opacity: 1;
+    }
+
+    52% {
+        transform: none;
+        opacity: 1;
+    }
+
+    55% {
+        transform: skew(-1deg, 0.2deg);
+        opacity: 0.75;
+    }
+
+    50% {
+        transform: none;
+        opacity: 1;
+    }
+
+    72% {
+        transform: none;
+        opacity: 1;
+    }
+
+    75% {
+        transform: skew(0.4deg, 1deg);
+        opacity: 0.75;
+    }
+
+    80% {
+        transform: none;
+        opacity: 1;
+    }
+
+    100% {
+        transform: none;
+        opacity: 1;
+    }
+}
+
+@keyframes glitch2 {
+    0% {
+        transform: none;
+        opacity: 0.25;
+    }
+
+    7% {
+        transform: translate(-2px, -3px);
+        opacity: 0.5;
+    }
+
+    10% {
+        transform: none;
+        opacity: 0.25;
+    }
+
+    27% {
+        transform: none;
+        opacity: 0.25;
+    }
+
+    30% {
+        transform: translate(-5px, -2px);
+        opacity: 0.5;
+    }
+
+    35% {
+        transform: none;
+        opacity: 0.25;
+    }
+
+    52% {
+        transform: none;
+        opacity: 0.25;
+    }
+
+    55% {
+        transform: translate(-5px, -1px);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: none;
+        opacity: 0.25;
+    }
+
+    72% {
+        transform: none;
+        opacity: 0.25;
+    }
+
+    75% {
+        transform: translate(-2px, -6px);
+        opacity: 0.5;
+    }
+
+    80% {
+        transform: none;
+        opacity: 0.25;
+    }
+
+    100% {
+        transform: none;
+        opacity: 0.25;
+    }
+}
+
+@keyframes glitch3 {
+    0% {
+        transform: none;
+        opacity: 0.25;
+    }
+
+    7% {
+        transform: translate(2px, 3px);
+        opacity: 0.5;
+    }
+
+    10% {
+        transform: none;
+        opacity: 0.25;
+    }
+
+    27% {
+        transform: none;
+        opacity: 0.25;
+    }
+
+    30% {
+        transform: translate(5px, 2px);
+        opacity: 0.5;
+    }
+
+    35% {
+        transform: none;
+        opacity: 0.25;
+    }
+
+    52% {
+        transform: none;
+        opacity: 0.25;
+    }
+
+    55% {
+        transform: translate(5px, 1px);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: none;
+        opacity: 0.25;
+    }
+
+    72% {
+        transform: none;
+        opacity: 0.25;
+    }
+
+    75% {
+        transform: translate(2px, 6px);
+        opacity: 0.5;
+    }
+
+    80% {
+        transform: none;
+        opacity: 0.25;
+    }
+
+    100% {
+        transform: none;
+        opacity: 0.25;
+    }
+}
+
+
+
+.police-tape {
+    background-color: $yellow;
+    background: linear-gradient(180deg, lighten($yellow, 20%) 0%, $yellow 5%, $yellow 90%, lighten($yellow, 5%) 95%, darken($yellow, 50%) 100%);
+    padding: 0.125em;
+    font-size: 3em;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.police-tape--1 {
+    transform: rotate(10deg);
+    position: absolute;
+    top: 40%;
+    left: -5%;
+    right: -5%;
+    z-index: 2;
+    margin-top: 0;
+}
+
+.police-tape--2 {
+    transform: rotate(-8deg);
+    position: absolute;
+    top: 50%;
+    left: -5%;
+    right: -5%;
+}
