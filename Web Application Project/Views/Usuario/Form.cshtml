@@ -18,7 +18,7 @@
             {
                 <div class="row">
                     <label for="UsuarioDesencriptografado" class="control-label">Usuario:</label>
-                    <input class="form-control" asp-for="UsuarioDesencriptografado" />
+                    <input class="psd-input" asp-for="UsuarioDesencriptografado" />
                     <span asp-validation-for="UsuarioDesencriptografado" class="text-danger"></span>
                 </div>
                 <br />
@@ -32,7 +32,7 @@
             {
                 <div class="row">
                     <label for="SenhaDesencriptografada" class="control-label">Senha:</label>
-                    <input type="password" class="form-control" asp-for="SenhaDesencriptografada" />
+                    <input type="password" class="psd-input" asp-for="SenhaDesencriptografada" />
                     <span asp-validation-for="SenhaDesencriptografada" class="text-danger"></span>
                 </div>
                 <br />
@@ -43,7 +43,7 @@
             }
             <div class="row">
                 <label for="TipoUsuario" class="control-label">Tipo de Usuário:</label>
-                <select asp-items="@Html.GetEnumSelectList(typeof(EnumTipoUsuario))" asp-for="TipoUsuario" class="form-select"></select>
+                <select asp-items="@Html.GetEnumSelectList(typeof(EnumTipoUsuario))" asp-for="TipoUsuario" ></select>
                 <span asp-validation-for="TipoUsuario" class="text-danger"></span>
             </div>
             <br />
@@ -51,7 +51,7 @@
         <div class="col-5 offset-2">
             <div class="row">
                 <label for="Nome" class="control-label">Nome:</label>
-                <input class="form-control" asp-for="Nome" />
+                <input class="psd-input" asp-for="Nome" />
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
             <br />

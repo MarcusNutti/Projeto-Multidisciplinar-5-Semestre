@@ -41,7 +41,7 @@ namespace Web_Application.Controllers
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
         }
-
+        /*
         [HttpGet("api/GetLatLong")]
         public async Task<IActionResult> GetLatLong(string CEP)
         {
@@ -86,6 +86,6 @@ namespace Web_Application.Controllers
 
                 return null;
             }
-        }
+        }*/
     }
 }
