@@ -6,6 +6,9 @@ namespace MongoReader.Models
     public class MedicaoViewModel : BaseDatabaseModel
     {
         [DatabaseProperty]
+        public override int Id { get; set; }    
+
+        [DatabaseProperty]
         public int DispositivoId { get; set; }
 
         [DatabaseProperty]
