@@ -42,5 +42,29 @@ AS
 BEGIN
 	SELECT * 
 	FROM tbLogWeb
+	ORDER BY DataGeracao DESC
+END
+GO
+
+CREATE PROCEDURE spSearchLogWeb
+(
+	@TipoLog		VARCHAR(MAX), 
+	@DataInicial	VARCHAR(MAX),
+	@DataFinal		VARCHAR(MAX)
+)
+AS
+BEGIN
+	IF @DataInicial = ''
+		SET @DataInicial = NULL
+
+	IF @DataFinal = ''
+		SET @DataFinal = NULL
+
+	SELECT *
+	FROM tbLogWeb
+	WHERE TipoOperacao LIKE CONCAT('%', ISNULL(@TipoLog, ''), '%') AND
+		  DataGeracao > CAST(ISNULL(@DataInicial, '1800-01-1') AS DATETIME) AND
+		  DataGeracao < CAST(ISNULL(@DataFinal, '9999-12-31') AS DATETIME)
+	ORDER BY DataGeracao DESC
 END
 GO

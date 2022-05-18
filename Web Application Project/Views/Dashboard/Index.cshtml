@@ -1,0 +1,21 @@
+﻿@{
+    var dispositivosDisponiveis = ViewBag.Dispositivos as List<SelectListItem>;
+    var bairrosDisponiveis = ViewBag.Bairros as List<SelectListItem>;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <span class="form-label">Dispositivo de Referência:</span>
+    <select style="margin-bottom: 32px" id="dispositivoReferencia" asp-items="dispositivosDisponiveis"></select>
+
+    <div id="hourlyWaterLevelDeviceChart" class="psd-grafico"></div>
+    <div id="dailyWaterLevelDeviceChart" class="psd-grafico" style=" margin-left:9%"></div>
+
+    <div id="hourlyRainValueDeviceChart" class="psd-grafico" style="margin-top: 32px;"></div>
+    <div id="dailyRainValueDeviceChart" class="psd-grafico" style="margin-left: 9%; margin-top: 32px"></div>
+</div>
+
+@section Scripts {
+<script src="~/lib/canvasjs/canvasjs.min.js"></script>
+<script src="~/js/dashboardMain.js"></script>
+}

@@ -6,6 +6,7 @@
     top: 25%;
     height: 50%;
     overflow-y: auto;   
+    background-color: white
 }
 
 .login-container{

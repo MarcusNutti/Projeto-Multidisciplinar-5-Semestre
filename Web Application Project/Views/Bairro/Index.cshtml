@@ -3,54 +3,41 @@
 <div class="col-4">
     <a href="Bairro/Create" class="btn psd-button psd-button-info">Criar um Bairro</a>
 </div>
+<br />
 
-<table class="table table-responsive table-sm psd-table">
-    <thead>
-        <tr>
-            <th>
-                Ações
-            </th>
-            <th>
-                Código
-            </th>
-            <th>
-                Descrição
-            </th>
-            <th>
-                Latitude Central
-            </th>
-            <th>
-                Longitude Central
-            </th>
-            <th>
-                CEP
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var bairro in Model)
-        {
-            <tr>
-                <td>
-                    <a href="Bairro/Edit?id=@bairro.Id" class="btn psd-button psd-button-info col-5">Editar</a>
-                    <button class="btn psd-button psd-button-danger col-5" onclick="javascrpit:DeleteConfirmation('Bairro', @bairro.Id)">Apagar</button>
-                </td>
-                <td>
-                    @bairro.Id
-                </td>
-                <td>
-                    @bairro.Descricao
-                </td>
-                <td>
-                    @bairro.Latitude
-                </td>
-                <td>
-                    @bairro.Longitude
-                </td>
-                <td>
-                    @bairro.CEP
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="search-bar">
+    <div class="row d-flex align-items-center">
+        <div class="col-md-1 offset-1">
+            <label class="control-label" style="color:white">Código: </label>
+        </div>
+        <div class="col-md-2">
+            <input class="form-control" id="searchId" />
+        </div>
+        <div class="col-md-1">
+            <label class="control-label" style="color:white">Descrição: </label>
+        </div>
+        <div class="col-md-2">
+            <input class="form-control" id="searchDescricao" />
+        </div>
+        <div class="col-md-1">
+            <label class="control-label" style="color:white">CEP: </label>
+        </div>
+        <div class="col-md-2">
+            <input class="form-control" id="searchCEP" />
+        </div>
+        <div class="col-2">
+            <button class="psd-button--pandora" onclick="javascprit:searchBairro()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                </svg>
+                Buscar
+            </button>
+        </div>
+    </div>
+</div>
+
+<div id="dados">
+    @await Html.PartialAsync("pvGrid", Model)
+</div>
+
+<script src="~/js/bairroIndex.js"></script>

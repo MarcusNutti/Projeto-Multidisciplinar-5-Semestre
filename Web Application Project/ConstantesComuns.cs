@@ -9,6 +9,7 @@
         public const string PROC_DELETE = "spDelete";
         public const string PROC_SELECT = "spSelect";
         public const string PROC_LIST   = "spList";
+        public const string PROC_SEARCH = "spSearch";
 
         #endregion
 

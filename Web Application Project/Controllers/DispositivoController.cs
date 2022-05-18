@@ -64,5 +64,24 @@ namespace Web_Application.Controllers
 
             base.ValidaDados(model, operacao);
         }
+
+        [HttpGet("api/SearchDispositivo")]
+        public IActionResult SearchBairro(string searchId, string searchDescricao, string searchBairro)
+        {
+            try
+            {
+                var resultadoBusca = (DAO as DispositivoDAO).Search(searchId, searchDescricao, searchBairro);
+
+                return PartialView("pvGrid", resultadoBusca);
+            }
+            catch (Exception erro)
+            {
+                LogService.GeraLogErro(erro,
+                                       controller: GetType().Name,
+                                       action: MethodInfo.GetCurrentMethod()?.Name);
+
+                return View("Error", new ErrorViewModel(erro.ToString()));
+            }
+        }
     }
 }

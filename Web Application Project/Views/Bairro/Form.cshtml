@@ -14,11 +14,11 @@
 
                 @if (ViewBag.Operacao == "A")
                 {
-                    <input class="form-control disabled" type="number" asp-for="Id" readonly />
+                    <input class="psd-input disabled" type="number" asp-for="Id" readonly />
                 }
                 else
                 {
-                    <input class="form-control" type="number" asp-for="Id" />
+                    <input class="psd-input" type="number" asp-for="Id" />
                 }
 
                 <span asp-validation-for="Id" class="text-danger"></span>
@@ -26,7 +26,7 @@
             <br />
             <div class="row">
                 <label for="Descricao" class="control-label">Nome do Bairro: </label>
-                <input class="form-control" asp-for="Descricao" />
+                <input class="psd-input" asp-for="Descricao" />
                 <span asp-validation-for="Descricao" class="text-danger"></span>
             </div>
             <br />
@@ -42,22 +42,26 @@
         <div class="col-md-5 offset-2">
             <div class="row">
                 <label for="CEP" class="control-label">CEP: </label>
-                <input class="form-control" asp-for="CEP" />
+                <input class="psd-input" asp-for="CEP" style="width: 75%"/>
+                <button type="button" style="margin-left:8%" class="psd-button--pandora col-2 offset-1" onclick="javascript:getLatitudeLongitude()">Calcular</button>
+                <span id="msgErroLatLong" class="text-danger" hidden>Ocorreu um erro ao requisitar a latitude e longitude!</span>
                 <span asp-validation-for="CEP" class="text-danger"></span>
             </div>
             <br />
             <div class="row">
                 <label for="CEP" class="control-label">Latitude: </label>
-                <input class="form-control" asp-for="Latitude" />
+                <input class="psd-input disabled" asp-for="Latitude" readonly/>
                 <span asp-validation-for="Latitude" class="text-danger"></span>
             </div>
             <br />
             <div class="row">
                 <label for="CEP" class="control-label">Longitude: </label>
-                <input class="form-control" asp-for="Longitude" />
+                <input class="psd-input disabled" asp-for="Longitude" readonly/>
                 <span asp-validation-for="Longitude" class="text-danger"></span>
             </div>
             <br />
         </div>
     </div>
 </form>
+
+<script src="~/js/editBairro.js"></script>
